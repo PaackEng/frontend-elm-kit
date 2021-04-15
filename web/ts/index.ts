@@ -1,4 +1,4 @@
-import { Elm } from '../../../src/Main.elm';
+import { Elm } from '../../src/Main.elm';
 import 'regenerator-runtime/runtime';
 import * as auth from '../../auth0/ts/auth';
 import 'paack-ui-assets/js/paackSvgIconSprite.js';
