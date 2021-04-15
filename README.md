@@ -9,9 +9,9 @@ git remote add -f frontend-elm-kit git@github.com:PaackEng/frontend-elm-kit.git
 git subtree add --prefix=frontend-elm-kit frontend-elm-kit main --squash
 
 ln -s frontend-elm-kit/github ./.github
-ln -s frontend-elm-kit/.{editorconfig,tool-versions} ./
+ln -s frontend-elm-kit/{.editorconfig,.tool-versions,elm.json} ./
 echo 'frontend-elm-kit/' .gitignore
-git add .github .gitignore .editorconfig .tool-versions
+git add .github .gitignore .editorconfig .tool-versions elm.json
 git commit -m 'Add syslinks'
 ```
 
