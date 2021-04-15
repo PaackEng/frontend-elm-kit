@@ -1,5 +1,5 @@
 {
   "source": "i18n",
-  "dest": "src",
+  "dest": "../src",
   "namespace": "I18n"
 }

@@ -1,3 +1,6 @@
+../.github/
+../assets/i18n/
+../src/Schemas/
 .cache/
 .parcel-cache/
 dist/
