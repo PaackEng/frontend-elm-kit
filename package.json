@@ -13,7 +13,7 @@
     "mock": "NODE_PATH=\"$PWD/node_modules\" node ../mock-server",
     "prettify": "prettier --config ./.prettierrc.json --ignore-path ./.prettierignore -w ..",
     "review": "yarn run review:prettier && yarn run review:eslint && yarn run review:elm",
-    "review:elm": "elm-review --template PaackEng/elm-review-config#1.1.0 --ignore-dirs ../src/I18n,../src/Schemas",
+    "review:elm": "cd .. && elm-review --template PaackEng/elm-review-config#1.1.0 --ignore-dirs src/I18n,src/Schemas",
     "review:eslint": "eslint web/ts/** auth0/ts/**",
     "review:prettier": "prettier --config ./.prettierrc.json --ignore-path ./.prettierignore --check ..",
     "start": "parcel serve ./web/index.html"

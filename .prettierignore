@@ -6,7 +6,8 @@
 dist/
 elm-stuff/
 node_modules/
-.env.sh
 devops/
+src/
+.env
 elm.json
 yarn-error.log

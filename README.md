@@ -21,6 +21,7 @@ Right now I haven't found a way to sync `.gitignore`, so make it by hand:
 ```
 elm-stuff/
 frontend-elm-kit/.cache/
+frontend-elm-kit/dist/
 frontend-elm-kit/node_modules/
 .env
 
@@ -65,4 +66,3 @@ GQL_PATH=lmo
 GQL_MODULE=LMO
 
 ```
-
