@@ -1,0 +1,69 @@
+{
+  "name": "frontend-elm-kit",
+  "version": "1.0.0",
+  "description": "Paack's Frontend Elm Kit",
+  "main": "dist/index.html",
+  "author": "PaackEng",
+  "license": "MIT",
+  "scripts": {
+    "build": "parcel build ./web/index.html --out-dir ../dist/",
+    "generate": "yarn run generate:graphql && yarn run generate:i18n",
+    "generate:graphql": "elm-graphql --schema-file ../../schemas/graphql/schema.graphql --base Schemas --scalar-codecs Data.GraphqlScalarCodecs",
+    "generate:i18n": "i18n-json-to-elm",
+    "mock": "node ../mock-server",
+    "prettify": "prettier -w ..",
+    "review": "yarn run review:prettier && yarn run review:eslint && yarn run review:elm",
+    "review:elm": "elm-review --template PaackEng/elm-review-config#1.1.0 --ignore-dirs ../src/I18n,../src/Schemas",
+    "review:eslint": "eslint web/ts/** auth0/ts/**",
+    "review:prettier": "prettier --check ..",
+    "start": "parcel serve ./web/index.html"
+  },
+  "private": true,
+  "devDependencies": {
+    "@dillonkearns/elm-graphql": "^4.2.1",
+    "@google-web-components/google-map": "git+https://github.com/PaackEng/google-map.git#refs/tags/v3.1.0",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "@webcomponents/webcomponentsjs": "^2.5.0",
+    "cors": "^2.8.5",
+    "elm": "^0.19.1-5",
+    "elm-hot": "^1.1.6",
+    "elm-review": "^2.5.0",
+    "eslint": "^7.24.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.12.0",
+    "faker": "^5.5.3",
+    "graphql": "^15.5.0",
+    "graphql-tools": "^7.0.4",
+    "i18n-json-to-elm": "^1.1.2",
+    "node-elm-compiler": "^5.0.6",
+    "parcel-bundler": "^1.12.5",
+    "parcel-plugin-pwa-manifest": "^3.0.10",
+    "prettier": "^2.2.1",
+    "prettier-plugin-elm": "^0.7.0",
+    "typescript": "^4.2.4",
+    "yargs": "^16.2.0"
+  },
+  "dependencies": {
+    "@auth0/auth0-spa-js": "^1.14.0",
+    "paack-ui-assets": "^0.1.1"
+  },
+  "engines": {
+    "node": ">=0.14"
+  },
+  "pwaManifest": {
+    "name": "Project Web",
+    "shortName": "PROJ",
+    "startURL": "dist/index.html",
+    "theme": "#0C429C",
+    "generateIconOptions": {
+      "baseIcon": "../assets/favicon.svg",
+      "sizes": [
+        192,
+        384,
+        512
+      ],
+      "genFavicons": true
+    }
+  }
+}

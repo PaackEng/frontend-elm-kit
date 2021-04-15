@@ -1,0 +1,114 @@
+name: Deploy
+
+on: [deployment]
+
+jobs:
+  build:
+    runs-on: Ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Sandbox | Setup GCP
+        uses: google-github-actions/setup-gcloud@master
+        if: github.event.deployment.environment == 'sandbox'
+        with:
+          version: '319.0.0'
+          service_account_email: ${{ secrets.SANDBOX_GCP_SA_EMAIL }}
+          service_account_key: ${{ secrets.SANDBOX_GCP_SA_KEY }}
+          export_default_credentials: true
+      - name: Staging | Setup GCP
+        uses: google-github-actions/setup-gcloud@master
+        if: github.event.deployment.environment == 'staging'
+        with:
+          version: '319.0.0'
+          service_account_email: ${{ secrets.STAGING_GCP_SA_EMAIL }}
+          service_account_key: ${{ secrets.STAGING_GCP_SA_KEY }}
+          export_default_credentials: true
+      - name: Production | Setup GCP
+        uses: google-github-actions/setup-gcloud@master
+        if: github.event.deployment.environment == 'production'
+        with:
+          version: '319.0.0'
+          service_account_email: ${{ secrets.PRODUCTION_GCP_SA_EMAIL }}
+          service_account_key: ${{ secrets.PRODUCTION_GCP_SA_KEY }}
+          export_default_credentials: true
+
+      - name: Sandbox | Setup GCLOUD
+        if: github.event.deployment.environment == 'sandbox'
+        run: |
+          gcloud config set project carbon-garage-204313
+          gcloud container clusters get-credentials sandbox-0320 --zone europe-west1-b --project ${{ secrets.SANDBOX_GCP_PROJECT_ID }}
+      - name: Staging | Setup GCLOUD
+        if: github.event.deployment.environment == 'staging'
+        run: |
+          gcloud config set project staging-204313
+          gcloud container clusters get-credentials istio-staging --zone europe-west1-b --project ${{ secrets.STAGING_GCP_PROJECT_ID }}
+      - name: Production | Setup GCLOUD
+        if: github.event.deployment.environment == 'production'
+        run: |
+          gcloud config set project paack-910
+          gcloud container clusters get-credentials istio-production --zone europe-west1-b --project ${{ secrets.PRODUCTION_GCP_PROJECT_ID }}
+
+      - name: Sandbox | Build and push to Google Container Registry
+        if: github.event.deployment.environment == 'sandbox'
+        run: |
+          yes | gcloud auth configure-docker
+          docker build --build-arg PROJ_AUTH0_CLIENT_ID=${{ secrets.SANDBOX_PROJ_AUTH0_CLIENT_ID }} --build-arg PROJ_AUTH0_DOMAIN=${{ secrets.SANDBOX_PROJ_AUTH0_DOMAIN }} --build-arg PROJ_AUTH0_AUDIENCE=${{ secrets.SANDBOX_PROJ_AUTH0_AUDIENCE }} --build-arg PROJ_GOOGLE_MAPS_KEY=${{ secrets.PROJ_GOOGLE_MAPS_KEY }} --build-arg PROJ_ROLLBAR_TOKEN=${{ secrets.PROJ_ROLLBAR_TOKEN }} --build-arg PROJ_ENV=sandbox -t gcr.io/${{ secrets.SANDBOX_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:$GITHUB_SHA .
+          docker tag gcr.io/${{ secrets.SANDBOX_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:$GITHUB_SHA gcr.io/${{ secrets.SANDBOX_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:latest
+          docker push gcr.io/${{ secrets.SANDBOX_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:$GITHUB_SHA
+          docker push gcr.io/${{ secrets.SANDBOX_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:latest
+      - name: Staging | Build and push to Google Container Registry
+        if: github.event.deployment.environment == 'staging'
+        run: |
+          yes | gcloud auth configure-docker
+          docker pull gcr.io/${{ secrets.STAGING_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:latest || true
+          docker build --build-arg PROJ_AUTH0_CLIENT_ID=${{ secrets.STAGING_PROJ_AUTH0_CLIENT_ID }} --build-arg PROJ_AUTH0_DOMAIN=${{ secrets.STAGING_PROJ_AUTH0_DOMAIN }} --build-arg PROJ_AUTH0_AUDIENCE=${{ secrets.STAGING_PROJ_AUTH0_AUDIENCE }} --build-arg PROJ_GOOGLE_MAPS_KEY=${{ secrets.PROJ_GOOGLE_MAPS_KEY }} --build-arg PROJ_ROLLBAR_TOKEN=${{ secrets.PROJ_ROLLBAR_TOKEN }} --build-arg PROJ_ENV=staging --cache-from gcr.io/${{ secrets.STAGING_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:latest -t gcr.io/${{ secrets.STAGING_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:$GITHUB_SHA .
+          docker tag gcr.io/${{ secrets.STAGING_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:$GITHUB_SHA gcr.io/${{ secrets.STAGING_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:latest
+          docker push gcr.io/${{ secrets.STAGING_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:$GITHUB_SHA
+          docker push gcr.io/${{ secrets.STAGING_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:latest
+      - name: Production | Build and push to Google Container Registry
+        if: github.event.deployment.environment == 'production'
+        run: |
+          yes | gcloud auth configure-docker
+          docker pull gcr.io/${{ secrets.PRODUCTION_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:latest || true
+          docker build --build-arg PROJ_AUTH0_CLIENT_ID=${{ secrets.PRODUCTION_PROJ_AUTH0_CLIENT_ID }} --build-arg PROJ_AUTH0_DOMAIN=${{ secrets.PRODUCTION_PROJ_AUTH0_DOMAIN }} --build-arg PROJ_AUTH0_AUDIENCE=${{ secrets.PRODUCTION_PROJ_AUTH0_AUDIENCE }} --build-arg PROJ_ROLLBAR_TOKEN=${{ secrets.PROJ_ROLLBAR_TOKEN }} --build-arg PROJ_GOOGLE_MAPS_KEY=${{ secrets.PROJ_GOOGLE_MAPS_KEY }} --build-arg PROJ_ENV=production --cache-from gcr.io/${{ secrets.PRODUCTION_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:latest -t gcr.io/${{ secrets.PRODUCTION_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:$GITHUB_SHA .
+          docker tag gcr.io/${{ secrets.PRODUCTION_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:$GITHUB_SHA gcr.io/${{ secrets.PRODUCTION_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:latest
+          docker push gcr.io/${{ secrets.PRODUCTION_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:$GITHUB_SHA
+          docker push gcr.io/${{ secrets.PRODUCTION_GCP_PROJECT_ID }}/paack-system-${{github.repository}}:latest
+
+      - name: Setup Helm
+        run: |
+          curl -sSL https://get.helm.sh/helm-v2.13.1-linux-amd64.tar.gz | tar xz && sudo mv linux-amd64/helm /usr/local/bin/helm && rm -rf linux-amd64
+          helm version --client
+          helm init --client-only --stable-repo-url https://charts.helm.sh/stable
+
+      - name: Add helm plugins
+        run: |
+          helm plugin install https://github.com/viglesiasce/helm-gcs --version v0.2.0
+          helm plugin list
+          helm repo add paack-repo gs://paack-system-production-charts
+          helm repo update
+
+      - name: 'Deploy ${{ github.event.deployment.environment }}'
+        run: |
+          helm upgrade --install ${{github.repository}} paack-repo/${{github.repository}} --namespace ${{github.repository}} \
+            --values devops/helm/${{github.repository}}/values_${{ github.event.deployment.environment }}.yaml \
+            --set app.main.image.tag=$GITHUB_SHA
+
+      - name: Deployment success
+        if: success()
+        uses: deliverybot/deployment-status@v1
+        with:
+          state: success
+          token: ${{ github.token }}
+
+      - name: Deployment failure
+        if: failure()
+        uses: deliverybot/deployment-status@v1
+        with:
+          state: failure
+          token: ${{ github.token }}

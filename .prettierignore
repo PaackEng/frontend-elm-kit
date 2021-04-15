@@ -1,0 +1,9 @@
+.cache/
+.parcel-cache/
+dist/
+elm-stuff/
+node_modules/
+.env.sh
+devops/
+elm.json
+yarn-error.log
