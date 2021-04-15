@@ -10,9 +10,20 @@ git subtree add --prefix=frontend-elm-kit frontend-elm-kit main --squash
 
 ln -s frontend-elm-kit/github ./.github
 ln -s frontend-elm-kit/{.editorconfig,.tool-versions,elm.json} ./
-echo 'frontend-elm-kit/' .gitignore
 git add .github .gitignore .editorconfig .tool-versions elm.json
 git commit -m 'Add syslinks'
+```
+
+### .gitignore
+
+Right now I haven't found a way to sync `.gitignore`, so make it by hand:
+
+```
+elm-stuff/
+frontend-elm-kit/.cache/
+frontend-elm-kit/node_modules/
+.env
+
 ```
 
 ## Update instructions

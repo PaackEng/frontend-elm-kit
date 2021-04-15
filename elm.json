@@ -2,7 +2,7 @@
     "type": "application",
     "source-directories": [
         "src",
-        "auth0/elm"
+        "frontend-elm-kit/auth0/elm"
     ],
     "elm-version": "0.19.1",
     "dependencies": {
