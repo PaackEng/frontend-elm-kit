@@ -10,7 +10,7 @@
     "generate": "yarn run generate:graphql && yarn run generate:i18n",
     "generate:graphql": ". ../graphql.env && elm-graphql --schema-file ../../schemas/graphql/${GQL_PATH}/schema.graphql --output ../src --base Schemas.${GQL_MODULE} --scalar-codecs Data.GraphqlScalarCodecs",
     "generate:i18n": "i18n-json-to-elm",
-    "mock": "node ../mock-server",
+    "mock": "NODE_PATH=\"$PWD/node_modules\" node ../mock-server",
     "prettify": "prettier --config ./.prettierrc.json --ignore-path ./.prettierignore -w ..",
     "review": "yarn run review:prettier && yarn run review:eslint && yarn run review:elm",
     "review:elm": "elm-review --template PaackEng/elm-review-config#1.1.0 --ignore-dirs ../src/I18n,../src/Schemas",
