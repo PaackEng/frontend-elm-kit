@@ -1,32 +1,36 @@
 module Effects.Common exposing
-    ( CommonEffect(..)
-    , GraphqlRequestEffect
-    , HttpRequestEffect
-    , cmd
-    , flip
-    , graphqlDecode
-    , graphqlFailure
-    , graphqlMutation
-    , graphqlQuery
-    , httpRequest
-    , loopMsg
-    , mapCommonEffect
-    , paackUI
-    , pushUrl
-    , replaceUrl
-    , timeHere
-    , uuidGenerator
+    ( CommonEffect(..), mapCommonEffect
+    , cmd, loopMsg
+    , pushUrl, replaceUrl, timeHere, domGetElement, domSetViewportOf
+    , uuidGenerator, httpRequest, paackUI
+    , GraphqlRequestEffect, HttpRequestEffect, graphqlQuery, graphqlMutation
     )
+
+{-|
+
+
+# Types
+
+@docs CommonEffect, mapCommonEffect
+
+
+# Common Effectss
+
+@docs cmd, loopMsg
+@docs pushUrl, replaceUrl, timeHere, domGetElement, domSetViewportOf
+@docs uuidGenerator, httpRequest, paackUI
+@docs GraphqlRequestEffect, HttpRequestEffect, graphqlQuery, graphqlMutation
+
+-}
 
 import Browser.Dom as Dom
 import Graphql.Http as Graphql
 import Graphql.Http.GraphqlError as GraphqlError
 import Graphql.Operation exposing (RootMutation, RootQuery)
 import Graphql.SelectionSet exposing (SelectionSet(..))
-import Http as ElmHttp exposing (Header)
+import Http as ElmHttp
 import Json.Decode as Decode exposing (Decoder, Value)
 import Remote.Response as Response exposing (GraphqlHttpResponse)
-import Task exposing (Task)
 import Time
 import UI.Analytics as UI
 import UI.Effect as UI
@@ -75,11 +79,11 @@ mapCommonEffect fn effect =
         LoopMsg msg ->
             LoopMsg <| fn msg
 
-        PushUrl str ->
-            PushUrl str
+        PushUrl url ->
+            PushUrl url
 
-        ReplaceUrl str ->
-            ReplaceUrl str
+        ReplaceUrl url ->
+            ReplaceUrl url
 
         TimeHere toMsg ->
             TimeHere <| toMsg >> fn
@@ -87,11 +91,11 @@ mapCommonEffect fn effect =
         UUIDGenerator toMsg ->
             UUIDGenerator <| toMsg >> fn
 
-        DomGetElement toMsg str ->
-            DomGetElement (toMsg >> fn) str
+        DomGetElement toMsg idAttribute ->
+            DomGetElement (toMsg >> fn) idAttribute
 
-        DomSetViewportOf toMsg str x y ->
-            DomSetViewportOf (toMsg >> fn) str x y
+        DomSetViewportOf toMsg parent x y ->
+            DomSetViewportOf (toMsg >> fn) parent x y
 
         HttpRequest data ->
             HttpRequest
@@ -149,6 +153,16 @@ uuidGenerator =
 timeHere : (Time.Zone -> msg) -> CommonEffect msg
 timeHere =
     TimeHere
+
+
+domSetViewportOf : (Result Dom.Error () -> msg) -> String -> Float -> Float -> CommonEffect msg
+domSetViewportOf =
+    DomSetViewportOf
+
+
+domGetElement : (Result Dom.Error Dom.Element -> msg) -> String -> CommonEffect msg
+domGetElement =
+    DomGetElement
 
 
 httpRequest :

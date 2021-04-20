@@ -2,7 +2,7 @@ module Effects exposing
     ( Effects, fromLocal
     , none, batch, map
     , cmd, loopMsg
-    , pushUrl, replaceUrl, timeHere
+    , pushUrl, replaceUrl, timeHere, domGetElement, domSetViewportOf
     , uuidGenerator, httpRequest, paackUI
     , graphqlQuery, graphqlMutation
     , Effect(..), apply
@@ -24,7 +24,7 @@ module Effects exposing
 # Common Effectss
 
 @docs cmd, loopMsg
-@docs pushUrl, replaceUrl, timeHere
+@docs pushUrl, replaceUrl, timeHere, domGetElement, domSetViewportOf
 @docs uuidGenerator, httpRequest, paackUI
 @docs graphqlQuery, graphqlMutation
 
@@ -38,18 +38,15 @@ module Effects exposing
 import Browser.Dom as Dom
 import Effects.Common as Common exposing (CommonEffect, mapCommonEffect)
 import Effects.Local as Local exposing (LocalEffect, mapLocalEffect)
-import Graphql.Http as Graphql
-import Graphql.Http.GraphqlError as GraphqlError
 import Graphql.Operation exposing (RootMutation, RootQuery)
-import Graphql.SelectionSet exposing (SelectionSet(..))
+import Graphql.SelectionSet exposing (SelectionSet)
 import Http as ElmHttp
-import Json.Decode as Decode exposing (Decoder, Value)
-import Remote.Response as Response exposing (GraphqlHttpResponse)
-import Task exposing (Task)
+import Json.Decode exposing (Decoder)
+import Remote.Response exposing (GraphqlHttpResponse)
 import Time
 import UI.Analytics as UI
 import UI.Effect as UI
-import UUID exposing (UUID, decoder)
+import UUID exposing (UUID)
 
 
 type alias Effects msg =
@@ -133,6 +130,16 @@ uuidGenerator =
 timeHere : (Time.Zone -> msg) -> Effects msg
 timeHere =
     Common.timeHere >> fromCommon
+
+
+domSetViewportOf : (Result Dom.Error () -> msg) -> String -> Float -> Float -> Effects msg
+domSetViewportOf toMsg parent x y =
+    Common.domSetViewportOf toMsg parent x y |> fromCommon
+
+
+domGetElement : (Result Dom.Error Dom.Element -> msg) -> String -> Effects msg
+domGetElement toMsg idAttribute =
+    Common.domGetElement toMsg idAttribute |> fromCommon
 
 
 httpRequest :

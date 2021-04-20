@@ -4,17 +4,11 @@ import Browser.Dom as Dom
 import Browser.Navigation as Nav
 import Effects.Common exposing (CommonEffect(..), GraphqlRequestEffect, HttpRequestEffect)
 import Graphql.Http as Graphql
-import Graphql.Http.GraphqlError as GraphqlError
 import Graphql.Operation exposing (RootMutation, RootQuery)
-import Graphql.SelectionSet exposing (SelectionSet(..))
-import Http as ElmHttp exposing (Header)
-import Json.Decode as Decode exposing (Decoder, Value)
-import Remote.Response as Response exposing (GraphqlHttpResponse)
-import Task exposing (Task)
+import Http as ElmHttp
+import Task
 import Time
-import UI.Analytics as UI
-import UI.Effect as UI
-import UUID exposing (Seeds, UUID, decoder)
+import UUID exposing (Seeds, UUID)
 
 
 effectPerform : Nav.Key -> Seeds -> CommonEffect msg -> ( Seeds, Cmd msg )
@@ -30,14 +24,14 @@ effectPerform key seeds effect =
             , Task.perform identity <| Task.succeed msg
             )
 
-        PushUrl str ->
+        PushUrl url ->
             ( seeds
-            , Nav.pushUrl key str
+            , Nav.pushUrl key url
             )
 
-        ReplaceUrl str ->
+        ReplaceUrl url ->
             ( seeds
-            , Nav.replaceUrl key str
+            , Nav.replaceUrl key url
             )
 
         TimeHere toMsg ->

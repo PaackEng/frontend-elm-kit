@@ -1,15 +1,12 @@
 module Effects.MainHelper exposing (PerformerModel, effectsApplier, performedInit, performedUpdate)
 
-import Browser
 import Browser.Navigation as Nav
-import Effects exposing (Effects)
+import Effects
 import Effects.CommonPerformer as CommonPerformer
 import Effects.LocalPerformer as LocalPerformer
 import Main.Model as Model exposing (Flags, Model)
-import Main.Msg as Msg exposing (Msg)
-import Main.Subscriptions as Subscriptions
+import Main.Msg exposing (Msg)
 import Main.Update exposing (update)
-import Main.View as View
 import Random
 import UUID exposing (Seeds)
 import Url exposing (Url)
