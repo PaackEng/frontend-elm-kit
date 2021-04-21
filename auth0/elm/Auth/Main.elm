@@ -1,7 +1,7 @@
 module Auth.Main exposing
     ( Config
     , Effect(..)
-    , Model
+    , Model(..)
     , Msg
     , checkSession
     , getSession
@@ -10,6 +10,7 @@ module Auth.Main exposing
     , isLogged
     , login
     , logout
+    , mockResult
     , performEffect
     , subscriptions
     , update
@@ -178,3 +179,8 @@ performEffect effect =
 
         PortLogout ->
             Ports.logout ()
+
+
+mockResult : Config msg -> Decode.Value -> msg
+mockResult { toExternalMsg } value =
+    toExternalMsg <| SessionAuthResult value

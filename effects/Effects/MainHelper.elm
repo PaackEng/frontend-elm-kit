@@ -30,7 +30,7 @@ performedInit flags url key =
                 (Random.initialSeed flags.randomSeed4)
 
         ( appModel, effects ) =
-            Model.init flags url
+            Model.init flags url ()
 
         ( newSeeds, cmds ) =
             Effects.apply
