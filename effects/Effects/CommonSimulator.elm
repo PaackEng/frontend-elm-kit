@@ -1,24 +1,22 @@
 module Effects.CommonSimulator exposing (effectPerform)
 
-import Effects exposing (Effect)
 import Effects.Common exposing (CommonEffect(..), GraphqlRequestEffect, HttpRequestEffect)
 import Graphql.Http as Graphql
 import Graphql.Operation exposing (RootMutation, RootQuery)
 import Http
-import Json.Decode as Decode exposing (Value)
+import Json.Decode as Decode
 import ProgramTest exposing (SimulatedEffect)
 import SimulatedEffect.Cmd as SimulatedCmd
 import SimulatedEffect.Http as ElmHttp
 import SimulatedEffect.Navigation as Nav
 import SimulatedEffect.Task as SimulatedTask
 import Time
-import UUID exposing (UUID)
 
 
 effectPerform : CommonEffect msg -> SimulatedEffect msg
 effectPerform effect =
     case effect of
-        Command command ->
+        Command _ ->
             SimulatedCmd.none
 
         LoopMsg msg ->
@@ -33,13 +31,13 @@ effectPerform effect =
         TimeHere toMsg ->
             loop <| toMsg Time.utc
 
-        UUIDGenerator toMsg ->
+        UUIDGenerator _ ->
             SimulatedCmd.none
 
-        DomGetElement toMsg idAttribute ->
+        DomGetElement _ _ ->
             SimulatedCmd.none
 
-        DomSetViewportOf toMsg parent x y ->
+        DomSetViewportOf _ _ _ _ ->
             SimulatedCmd.none
 
         HttpRequest data ->
