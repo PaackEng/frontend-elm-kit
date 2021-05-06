@@ -1,0 +1,19 @@
+{
+  "name": "@PaackEng/frontend-elm-kit",
+  "version": "0.0.6",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "postinstall": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaackEng/frontend-elm-kit.git"
+  },
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/PaackEng/frontend-elm-kit/issues"
+  },
+  "homepage": "https://github.com/PaackEng/frontend-elm-kit#readme"
+}
