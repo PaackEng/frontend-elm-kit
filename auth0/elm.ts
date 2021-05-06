@@ -1,4 +1,4 @@
-import { PortFromElm, PortToElm } from 'elm';
+import { User } from "@auth0/auth0-spa-js";
 
 type AuthPorts = {
   checkSession: PortFromElm<void>;
