@@ -1,21 +1,24 @@
 # frontend-elm-kit
 
+A set of tools and integrations used by our Elm applications.
+
 ## Installing
 
-If you're adding this package to a new project you have to create a `.npmrc` file in its root with the following content:
+Adding to a new project? Create a `.npmrc` file in its root with the following content:
 
 ```
 @PaackEng:registry=https://npm.pkg.github.com
 ```
 
-If this is your first time installing a private npm package from Paack's Github you have to [setup your token](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token).
+First time installing a private npm package from Paack's Github? [Setup your token](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token).
+
 Once the above is done, just install it:
 
 ```bash
 $ yarn add @PaackEng/frontend-elm-kit
 ```
 
-Add it as part of the source directories in the `elm.json`:
+Add it as a source directory in the `elm.json`:
 
 ```diff
 "type": "application",
@@ -29,10 +32,11 @@ Add it as part of the source directories in the `elm.json`:
 
 In order to integrate this package into your project there are some extra changes that need to be made:
 
-- Install all the required packages with exception of `elm/html`
-- If your application isn't using `Effect` yet you can use `Auth.performEffects` to convert them on the fly
+- Install all the [required packages](https://github.com/PaackEng/frontend-elm-kit/blob/main/example/elm.json) with exception of `elm/html`
 - Make sure that the modules `Main.Model`, `Main.Msg`, `Main.Update`, `Effects.Local` and `Effects.Performer` all exist. Look at the example folder for a minimal setup
 - Ensure that the ports `checkSession`, `login` and `logout` are all present
+- Provide all the four seeds (`randomSeed1`, 2, 3 and 4) in the app's `Flags`
+- If your application isn't using `Effect` yet you can use `Auth.performEffects` to convert them on the fly
 
 ## Running the example
 
