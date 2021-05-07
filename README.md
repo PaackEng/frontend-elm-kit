@@ -36,6 +36,7 @@ In order to integrate this package into your project there are some extra change
 - Make sure that the modules `Main.Model`, `Main.Msg`, `Main.Update`, `Effects.Local` and `Effects.Performer` all exist. Look at the example folder for a minimal setup
 - Ensure that the ports `checkSession`, `login` and `logout` are all present
 - Provide all the four seeds (`randomSeed1`, 2, 3 and 4) in the app's `Flags`
+- Install the [Auth0 SPA SDK](https://github.com/auth0/auth0-spa-js)
 - If your application isn't using `Effect` yet you can use `Auth.performEffects` to convert them on the fly
 
 ## Running the example
