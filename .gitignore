@@ -1,7 +1,7 @@
-elm-stuff/
-node_modules/
-.cache/
-dist/
+**/elm-stuff/
+**/node_modules/
+**/.cache/
+**/dist/
+**/.env
 
-.env
 *.tgz
