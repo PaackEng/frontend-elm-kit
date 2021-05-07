@@ -32,6 +32,6 @@ forAuth subMsg model =
         mappedEffects =
             fromLocal <| AuthEffect effects
     in
-    ( { model | auth = subModel, user = Auth.getUser model.auth }
+    ( { model | auth = subModel, user = Auth.getUser subModel }
     , mappedEffects
     )
