@@ -1,8 +1,8 @@
-module Paack.Effects.Simulator exposing (simulator)
+module Effects.Simulator exposing (simulator)
 
 import Effects.LocalSimulator as Local
 import Main.Msg exposing (Msg)
-import Paack.Effects exposing (Effect(..), Effects)
+import Paack.Effects as Effects exposing (Effect(..), Effects)
 import Paack.Effects.CommonSimulator as Common
 import ProgramTest exposing (SimulatedEffect)
 import SimulatedEffect.Cmd as SimulatedCmd
@@ -10,19 +10,22 @@ import SimulatedEffect.Cmd as SimulatedCmd
 
 simulator : Effects Msg -> SimulatedEffect Msg
 simulator effects =
-    Effects.apply effectsApplier SimulatedCmd.none effects
+    effects
+        |> Effects.apply effectsApplier
+            ( 0, SimulatedCmd.none )
+        |> Tuple.second
 
 
-effectsApplier : Effects.Effect Msg -> SimulatedEffect Msg -> SimulatedEffect Msg
-effectsApplier effect accumulator =
-    SimulatedCmd.batch [ effectPerform effect, accumulator ]
+effectsApplier : Effects.Effect Msg -> ( Int, SimulatedEffect Msg ) -> ( Int, SimulatedEffect Msg )
+effectsApplier effect ( i, accumulator ) =
+    ( i + 1, SimulatedCmd.batch [ effectPerform i effect, accumulator ] )
 
 
-effectPerform : Effect Msg -> SimulatedEffect Msg
-effectPerform effect =
+effectPerform : Int -> Effect Msg -> SimulatedEffect Msg
+effectPerform index effect =
     case effect of
         LocalEffect subEffect ->
             Local.effectPerform subEffect
 
         CommonEffect subEffect ->
-            Common.effectPerform subEffect
+            Common.effectPerform index subEffect

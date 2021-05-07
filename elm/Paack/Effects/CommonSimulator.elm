@@ -1,10 +1,10 @@
-module Paack.Effects.CommonSimulator exposing (effectPerform)
+module Effects.CommonSimulator exposing (effectPerform)
 
-import Paack.Effects.Common exposing (CommonEffect(..), GraphqlRequestEffect, HttpRequestEffect)
 import Graphql.Http as Graphql
 import Graphql.Operation exposing (RootMutation, RootQuery)
 import Http
 import Json.Decode as Decode
+import Paack.Effects.Common exposing (CommonEffect(..), GraphqlRequestEffect, HttpRequestEffect)
 import ProgramTest exposing (SimulatedEffect)
 import SimulatedEffect.Cmd as SimulatedCmd
 import SimulatedEffect.Http as ElmHttp
@@ -13,8 +13,8 @@ import SimulatedEffect.Task as SimulatedTask
 import Time
 
 
-effectPerform : CommonEffect msg -> SimulatedEffect msg
-effectPerform effect =
+effectPerform : Int -> CommonEffect msg -> SimulatedEffect msg
+effectPerform index effect =
     case effect of
         Command _ ->
             SimulatedCmd.none
@@ -41,13 +41,13 @@ effectPerform effect =
             SimulatedCmd.none
 
         HttpRequest data ->
-            httpRequest data
+            httpRequest index data
 
         GraphqlHttpQuery data ->
-            graphqlHttpQuery data
+            graphqlHttpQuery index data
 
         GraphqlHttpMutation data ->
-            graphqlHttpMutation data
+            graphqlHttpMutation index data
 
 
 loop : msg -> SimulatedEffect msg
@@ -55,12 +55,12 @@ loop msg =
     SimulatedTask.perform identity <| SimulatedTask.succeed msg
 
 
-httpRequest : HttpRequestEffect msg -> SimulatedEffect msg
-httpRequest data =
+httpRequest : Int -> HttpRequestEffect msg -> SimulatedEffect msg
+httpRequest index data =
     ElmHttp.request
         { method = data.method
         , headers = []
-        , url = data.url
+        , url = data.url ++ "#i" ++ String.fromInt index
         , body = ElmHttp.emptyBody
         , timeout = data.timeout
         , tracker = data.tracker
@@ -68,15 +68,18 @@ httpRequest data =
         }
 
 
-graphqlHttpQuery : GraphqlRequestEffect RootQuery msg -> SimulatedEffect msg
-graphqlHttpQuery data =
-    ElmHttp.get { url = data.url, expect = graphqlExpect data }
+graphqlHttpQuery : Int -> GraphqlRequestEffect RootQuery msg -> SimulatedEffect msg
+graphqlHttpQuery index data =
+    ElmHttp.get
+        { url = data.url ++ "#i" ++ String.fromInt index
+        , expect = graphqlExpect data
+        }
 
 
-graphqlHttpMutation : GraphqlRequestEffect RootMutation msg -> SimulatedEffect msg
-graphqlHttpMutation data =
+graphqlHttpMutation : Int -> GraphqlRequestEffect RootMutation msg -> SimulatedEffect msg
+graphqlHttpMutation index data =
     ElmHttp.post
-        { url = data.url
+        { url = data.url ++ "#i" ++ String.fromInt index
         , body = ElmHttp.emptyBody
         , expect = graphqlExpect data
         }
