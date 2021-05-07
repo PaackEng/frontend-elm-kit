@@ -1,5 +1,5 @@
 import { Elm } from "./src/Main.elm";
-import { connectAppToAuth } from "@PaackEng/frontend-elm-kit/auth0/connect";
+import { connectAppToAuth } from "../auth0/connect";
 
 const seeds = Array.from(crypto.getRandomValues(new Uint32Array(4)));
 const app = Elm.Main.init({
