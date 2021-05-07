@@ -28,7 +28,7 @@ authConfig =
 
 
 init : Flags -> Url -> () -> ( Model, Effects Msg )
-init flags url _ =
+init _ _ _ =
     let
         ( auth, authEffects ) =
             Auth.init authConfig
