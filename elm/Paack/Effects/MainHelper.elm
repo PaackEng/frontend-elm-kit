@@ -5,7 +5,7 @@ import Effects.LocalPerformer as LocalPerformer
 import Main.Model as Model exposing (Flags, Model)
 import Main.Msg exposing (Msg)
 import Main.Update exposing (update)
-import Paack.Effects
+import Paack.Effects as Effects
 import Paack.Effects.CommonPerformer as CommonPerformer
 import Random
 import UUID exposing (Seeds)

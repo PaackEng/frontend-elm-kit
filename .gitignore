@@ -1,3 +1,7 @@
 elm-stuff/
-*.tgz
 node_modules/
+.cache/
+dist/
+
+.env
+*.tgz
