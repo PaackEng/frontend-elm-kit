@@ -3,17 +3,15 @@
 ## Install instructions
 
 ```bash
-git remote add -f frontend-elm-kit git@github.com:PaackEng/frontend-elm-kit.git
-git subtree add --prefix=frontend-elm-kit frontend-elm-kit main --squash
+$ yarn add @PaackEng/frontend-elm-kit
 ```
 
-**Note**: remember to add `frontend-elm-kit` to ignored lists in linters.
+Add it as part of the source directories in the `elm.json`:
 
-## Update instructions
-
-Run:
-
-```sh
-git fetch frontend-elm-kit
-git subtree pull --prefix=frontend-elm-kit frontend-elm-kit main --squash
+```diff
+"type": "application",
+"source-directories": [
+  "src",
++ "node_modules/@PaackEng/frontend-elm-kit/elm"
+],
 ```
