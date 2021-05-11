@@ -9,6 +9,8 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
+    env:
+      working-directory: ./example
 
     steps:
       - name: Checkout
