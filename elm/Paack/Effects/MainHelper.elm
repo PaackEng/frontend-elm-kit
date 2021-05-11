@@ -34,7 +34,7 @@ performedInit flags url key =
 
         ( newSeeds, cmds ) =
             Effects.apply
-                (effectsApplier key)
+                (effectsApplier key appModel)
                 ( firstSeeds, Cmd.none )
                 effects
     in
@@ -51,7 +51,7 @@ performedUpdate msg performerModel =
 
         ( newSeeds, cmds ) =
             Effects.apply
-                (effectsApplier performerModel.key)
+                (effectsApplier performerModel.key appModel)
                 ( performerModel.seeds, Cmd.none )
                 effects
     in
@@ -60,22 +60,22 @@ performedUpdate msg performerModel =
     )
 
 
-effectsApplier : Nav.Key -> Effects.Effect Msg -> ( Seeds, Cmd Msg ) -> ( Seeds, Cmd Msg )
-effectsApplier key effect ( seeds, accumulator ) =
+effectsApplier : Nav.Key -> Model -> Effects.Effect Msg -> ( Seeds, Cmd Msg ) -> ( Seeds, Cmd Msg )
+effectsApplier key model effect ( seeds, accumulator ) =
     let
         ( newSeeds, cmd ) =
-            effectPerform key seeds effect
+            effectPerform key seeds model effect
     in
     ( newSeeds
     , Cmd.batch [ cmd, accumulator ]
     )
 
 
-effectPerform : Nav.Key -> Seeds -> Effects.Effect Msg -> ( Seeds, Cmd Msg )
-effectPerform key seeds effect =
+effectPerform : Nav.Key -> Seeds -> Model -> Effects.Effect Msg -> ( Seeds, Cmd Msg )
+effectPerform key seeds model effect =
     case effect of
         Effects.LocalEffect localEffect ->
-            LocalPerformer.effectPerform key seeds localEffect
+            LocalPerformer.effectPerform key seeds model localEffect
 
         Effects.CommonEffect commonEffect ->
             CommonPerformer.effectPerform key seeds commonEffect
