@@ -3,7 +3,7 @@ module Paack.Rollbar.Http exposing (errorToRollbar)
 import Dict
 import Http as ElmHttp
 import Json.Encode as Encode
-import Paack.Rollbar as Rollbar exposing (RollbarPayload(..))
+import Paack.Rollbar exposing (RollbarPayload(..))
 
 
 errorToRollbar : ElmHttp.HttpError -> RollbarPayload

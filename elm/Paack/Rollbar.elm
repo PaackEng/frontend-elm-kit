@@ -13,12 +13,7 @@ module Paack.Rollbar exposing
 -}
 
 import Dict exposing (Dict)
-import Graphql.Http as GraphqlHttp
-import Graphql.Http.GraphqlError as GraphqlError
-import Json.Decode as Decode
 import Json.Encode as Encode exposing (Value)
-import Rollbar
-import Task exposing (Task)
 
 
 type alias RollbarErrorPayload =

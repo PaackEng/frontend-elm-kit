@@ -4,8 +4,6 @@ module Paack.Rollbar.Performer exposing (performEffect, performEffectWithModel)
 -}
 
 import Data.Environment as Environment exposing (Environment)
-import Main.Model as Main
-import Paack.Rollbar
 import Paack.Rollbar.Effect exposing (Effect(..), RollbarResult)
 import Rollbar
 import Task

@@ -4,14 +4,11 @@ module Paack.Rollbar.Graphql exposing (responseErrorToRollbar)
 -}
 
 import Dict
-import Effects.Local as LocalEffects
 import Graphql.Http as GraphqlHttp
 import Graphql.Http.GraphqlError as GraphqlError
 import Json.Decode as Decode
 import Json.Encode as Encode
-import Paack.Effects as Effects
 import Paack.Rollbar as Rollbar exposing (RollbarPayload(..))
-import Paack.Rollbar.Effect as RollbarEffect
 import Remote.Errors as RemoteErrors exposing (GraphqlHttpError)
 
 
