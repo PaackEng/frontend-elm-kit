@@ -6,8 +6,8 @@ import Paack.Auth.Main as Auth
 import UUID exposing (Seeds)
 
 
-effectPerform : Nav.Key -> Seeds -> LocalEffect msg -> ( Seeds, Cmd msg )
-effectPerform _ seeds effect =
+effectPerform : Nav.Key -> Seeds -> Model -> LocalEffect msg -> ( Seeds, Cmd msg )
+effectPerform _ seeds model effect =
     case effect of
         AuthEffect subEffect ->
             ( seeds, Auth.performEffect subEffect )

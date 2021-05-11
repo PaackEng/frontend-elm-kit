@@ -14,8 +14,8 @@
     "type": "git",
     "url": "git+https://github.com/PaackEng/frontend-elm-kit.git"
   },
-  "author": "",
-  "license": "",
+  "author": "PaackEng",
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/PaackEng/frontend-elm-kit/issues"
   },
