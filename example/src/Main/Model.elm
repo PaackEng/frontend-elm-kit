@@ -8,7 +8,6 @@ import Paack.Auth.User exposing (User)
 import Paack.Effects as Effects exposing (Effects, fromLocal)
 import Paack.Rollbar as Rollbar
 import Paack.Rollbar.Dispatch as Rollbar
-import Rollbar
 import Url exposing (Url)
 
 
@@ -18,7 +17,7 @@ type alias Model =
     , codeVersion : String
     , url : Url
     , user : Maybe User
-    , rollbarToken : Rollbar.Token
+    , rollbarToken : Rollbar.MaybeToken
     }
 
 
@@ -47,7 +46,7 @@ init flags url _ =
       , codeVersion = "git"
       , url = url
       , user = Nothing
-      , rollbarToken = Rollbar.token flags.rollbarToken
+      , rollbarToken = Rollbar.initToken flags.rollbarToken
       }
     , Effects.batch
         [ fromLocal <| AuthEffect authEffects

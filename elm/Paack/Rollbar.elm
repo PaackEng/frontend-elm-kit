@@ -1,8 +1,10 @@
 module Paack.Rollbar exposing
-    ( RollbarErrorPayload
+    ( MaybeToken(..)
+    , RollbarErrorPayload
     , RollbarPayload(..)
     , codedErrorPayload
     , errorPayload
+    , initToken
     , notToRoll
     , prependDescription
     , withEntry
@@ -14,6 +16,7 @@ module Paack.Rollbar exposing
 
 import Dict exposing (Dict)
 import Json.Encode as Encode exposing (Value)
+import Rollbar
 
 
 type alias RollbarErrorPayload =
@@ -25,6 +28,11 @@ type alias RollbarErrorPayload =
 type RollbarPayload
     = RollError RollbarErrorPayload
     | NotToRoll
+
+
+type MaybeToken
+    = DisabledForDevelopment
+    | JustToken Rollbar.Token
 
 
 notToRoll : RollbarPayload
@@ -81,3 +89,12 @@ prependDescription parent payload =
 
         NotToRoll ->
             payload
+
+
+initToken : String -> MaybeToken
+initToken tokenFromFlags =
+    if String.isEmpty tokenFromFlags then
+        DisabledForDevelopment
+
+    else
+        JustToken <| Rollbar.token tokenFromFlags

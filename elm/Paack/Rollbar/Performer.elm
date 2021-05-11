@@ -4,6 +4,7 @@ module Paack.Rollbar.Performer exposing (performEffect, performEffectWithModel)
 -}
 
 import Data.Environment as Environment exposing (Environment)
+import Paack.Rollbar exposing (MaybeToken(..))
 import Paack.Rollbar.Effect exposing (Effect(..), RollbarResult)
 import Rollbar
 import Task
@@ -14,16 +15,13 @@ performEffect :
     (RollbarResult -> msg)
     -> Environment
     -> String
-    -> Rollbar.Token
+    -> MaybeToken
     -> Url
     -> Effect
     -> Cmd msg
-performEffect feedbackMsg environment codeVersion token url (Send { title, body, level }) =
-    case environment of
-        Environment.Development ->
-            Cmd.none
-
-        _ ->
+performEffect feedbackMsg environment codeVersion maybeToken url (Send { title, body, level }) =
+    case maybeToken of
+        JustToken token ->
             Rollbar.send token
                 (Rollbar.codeVersion codeVersion)
                 -- This (scope) is seen in Rollbar as "body"."context":
@@ -36,6 +34,9 @@ performEffect feedbackMsg environment codeVersion token url (Send { title, body,
                 |> Task.map (always ())
                 |> Task.attempt feedbackMsg
 
+        DisabledForDevelopment ->
+            Cmd.none
+
 
 performEffectWithModel :
     (RollbarResult -> msg)
@@ -43,7 +44,7 @@ performEffectWithModel :
         { a
             | appConfig : { b | environment : Environment }
             , url : Url
-            , rollbarToken : Rollbar.Token
+            , rollbarToken : MaybeToken
             , codeVersion : String
         }
     -> Effect
