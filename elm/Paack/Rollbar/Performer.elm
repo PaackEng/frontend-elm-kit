@@ -31,8 +31,7 @@ performEffect feedbackMsg environment codeVersion token url (Send { title, body,
                 -- This (scope) is seen in Rollbar as "body"."context":
                 (Rollbar.scope url.path)
                 (Rollbar.environment <| Environment.toString environment)
-                -- This (max retries) is the value NoRedInk adopted for `defaultMaxAttempts`:
-                60
+                defaultMaxAttempts
                 level
                 title
                 body
@@ -58,3 +57,8 @@ performEffectWithModel feedbackMsg { appConfig, codeVersion, rollbarToken, url }
         rollbarToken
         url
         effect
+
+
+defaultMaxAttempts : Int
+defaultMaxAttempts =
+    60
