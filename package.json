@@ -29,5 +29,9 @@
   },
   "devDependencies": {
     "typescript": "^4.2.4"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
   }
 }

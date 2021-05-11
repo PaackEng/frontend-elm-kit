@@ -43,9 +43,13 @@ In order to integrate this package into your project there are some extra change
 
 ### Rollbar
 
-For using Rollbar:
 - Make sure your model includes `appConfig.environment`. `codeVersion`, `rollbarToken` and `url`;
 - You'll need a message for receiving feedback, see [how the example performs the effect](https://github.com/PaackEng/frontend-elm-kit/blob/main/example/src/Effects/LocalPerformer.elm);
+
+## Suggestions
+
+## Rollbar
+
 - Don't forget to update the url value in model when it changes;
 - Compose errors with `Paack.Rollbar` module;
 - Easy transform Http errors with `Paack.Rollbar.Http` module;
