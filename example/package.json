@@ -12,7 +12,8 @@
     "start": "parcel serve ./index.html",
     "review:elm": "elm-review --template PaackEng/elm-review-config#1.1.1",
     "review:prettier": "prettier --check .",
-    "build": "parcel build ./index.html --out-dir ./dist/"
+    "build": "parcel build ./index.html --out-dir ./dist/",
+    "test": "elm-test"
   },
   "author": "",
   "license": "UNLICENSED",

@@ -1,4 +1,4 @@
-module Effects.Simulator exposing (simulator)
+module Paack.Effects.Simulator exposing (simulator)
 
 import Effects.LocalSimulator as Local
 import Main.Msg exposing (Msg)
