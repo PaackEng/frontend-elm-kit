@@ -35,7 +35,8 @@ jobs:
 
       - name: Validate elm
         uses: PaackEng/elm-validate-action@v1.1.1
-        working-directory: ${{env.working-directory}}
+        with:
+          elm-working-directory: ${{env.working-directory}}
 
       - name: Run build
         run: yarn run build
