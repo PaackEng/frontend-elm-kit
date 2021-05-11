@@ -1,4 +1,4 @@
-module Auth.Roles exposing (Roles, decoder, hasAccess, hasWriteAdmin, isWarehouseAdmin, isWarehouseOperator)
+module Paack.Auth.Roles exposing (Roles, decoder, hasAccess, hasWriteAdmin, isWarehouseAdmin, isWarehouseOperator)
 
 {-|
 

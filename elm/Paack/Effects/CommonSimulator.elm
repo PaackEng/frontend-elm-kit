@@ -1,10 +1,10 @@
 module Effects.CommonSimulator exposing (effectPerform)
 
-import Effects.Common exposing (CommonEffect(..), GraphqlRequestEffect, HttpRequestEffect)
 import Graphql.Http as Graphql
 import Graphql.Operation exposing (RootMutation, RootQuery)
 import Http
 import Json.Decode as Decode
+import Paack.Effects.Common exposing (CommonEffect(..), GraphqlRequestEffect, HttpRequestEffect)
 import ProgramTest exposing (SimulatedEffect)
 import SimulatedEffect.Cmd as SimulatedCmd
 import SimulatedEffect.Http as ElmHttp

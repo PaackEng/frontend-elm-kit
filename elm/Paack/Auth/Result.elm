@@ -1,6 +1,6 @@
-module Auth.Result exposing (Error(..), Result, decode)
+module Paack.Auth.Result exposing (Error(..), Result, decode)
 
-import Auth.User as User exposing (User)
+import Paack.Auth.User as User exposing (User)
 import Json.Decode as Decode exposing (Decoder)
 import Json.Decode.Pipeline as JsonPipe
 

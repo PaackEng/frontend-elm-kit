@@ -1,7 +1,7 @@
-module Auth.Session exposing (Session(..), getUser, hasAccess, hasRole, hasWriteAdmin, isLogged)
+module Paack.Auth.Session exposing (Session(..), getUser, hasAccess, hasRole, hasWriteAdmin, isLogged)
 
-import Auth.Roles as Roles exposing (Roles)
-import Auth.User as User exposing (User)
+import Paack.Auth.Roles as Roles exposing (Roles)
+import Paack.Auth.User as User exposing (User)
 
 
 type Session

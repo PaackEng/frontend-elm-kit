@@ -1,0 +1,33 @@
+{
+  "name": "@PaackEng/frontend-elm-kit",
+  "version": "0.0.1",
+  "description": "",
+  "main": "",
+  "private": false,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "scripts": {
+    "postinstall": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaackEng/frontend-elm-kit.git"
+  },
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/PaackEng/frontend-elm-kit/issues"
+  },
+  "homepage": "https://github.com/PaackEng/frontend-elm-kit#readme",
+  "dependencies": {
+    "@auth0/auth0-spa-js": "^1.15.0",
+    "@types/elm": "^0.19.0"
+  },
+  "peerDependencies": {
+    "elm": "^0.19.1-5"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  }
+}

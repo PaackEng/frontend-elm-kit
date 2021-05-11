@@ -1,12 +1,12 @@
-module Effects.MainHelper exposing (PerformerModel, effectsApplier, performedInit, performedUpdate)
+module Paack.Effects.MainHelper exposing (PerformerModel, effectsApplier, performedInit, performedUpdate)
 
 import Browser.Navigation as Nav
-import Effects
-import Effects.CommonPerformer as CommonPerformer
 import Effects.LocalPerformer as LocalPerformer
 import Main.Model as Model exposing (Flags, Model)
 import Main.Msg exposing (Msg)
 import Main.Update exposing (update)
+import Paack.Effects as Effects
+import Paack.Effects.CommonPerformer as CommonPerformer
 import Random
 import UUID exposing (Seeds)
 import Url exposing (Url)

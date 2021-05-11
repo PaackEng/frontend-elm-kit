@@ -1,4 +1,4 @@
-port module Auth.Internals.Ports exposing (authResult, checkSession, login, logout)
+port module Paack.Auth.Internals.Ports exposing (authResult, checkSession, login, logout)
 
 import Json.Decode as Decode
 

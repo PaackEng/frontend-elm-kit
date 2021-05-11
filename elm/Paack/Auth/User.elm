@@ -1,6 +1,6 @@
-module Auth.User exposing (User, decoder, getData, getRoles, getToken)
+module Paack.Auth.User exposing (User, decoder, getData, getRoles, getToken)
 
-import Auth.Roles as Roles exposing (Roles)
+import Paack.Auth.Roles as Roles exposing (Roles)
 import Iso8601
 import Json.Decode as Decode exposing (Decoder)
 import Json.Decode.Pipeline as JsonPipe

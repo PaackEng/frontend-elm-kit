@@ -1,4 +1,4 @@
-module Effects.Common exposing
+module Paack.Effects.Common exposing
     ( CommonEffect(..), mapCommonEffect
     , cmd, loopMsg
     , pushUrl, replaceUrl, timeHere, domGetElement, domSetViewportOf

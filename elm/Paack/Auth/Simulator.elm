@@ -1,6 +1,6 @@
-module Auth.Simulator exposing (simulator)
+module Paack.Auth.Simulator exposing (simulator)
 
-import Auth.Main as Auth exposing (Config, Effect(..))
+import Paack.Auth.Main as Auth exposing (Config, Effect(..))
 import Iso8601
 import Json.Encode as Encode
 import ProgramTest exposing (SimulatedEffect)

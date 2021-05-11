@@ -1,4 +1,4 @@
-module Auth.Main exposing
+module Paack.Auth.Main exposing
     ( Config
     , Effect(..)
     , Model(..)
@@ -7,6 +7,7 @@ module Auth.Main exposing
     , getSession
     , getUser
     , init
+    , isFirstLogin
     , isLogged
     , login
     , logout
@@ -16,11 +17,11 @@ module Auth.Main exposing
     , update
     )
 
-import Auth.Internals.Ports as Ports
-import Auth.Result as AuthResult
-import Auth.Session as Session exposing (Session)
-import Auth.User exposing (User)
 import Json.Decode as Decode
+import Paack.Auth.Internals.Ports as Ports
+import Paack.Auth.Result as AuthResult
+import Paack.Auth.Session as Session exposing (Session)
+import Paack.Auth.User exposing (User)
 
 
 type Model
@@ -184,3 +185,17 @@ performEffect effect =
 mockResult : Config msg -> Decode.Value -> msg
 mockResult { toExternalMsg } value =
     toExternalMsg <| SessionAuthResult value
+
+
+isFirstLogin : Model -> { a | auth : Model } -> Maybe User
+isFirstLogin newAuthModel oldModel =
+    case getUser newAuthModel of
+        Just user ->
+            if not <| isLogged oldModel.auth then
+                Just user
+
+            else
+                Nothing
+
+        Nothing ->
+            Nothing

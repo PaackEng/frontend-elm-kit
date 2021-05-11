@@ -1,9 +1,9 @@
 module Effects.Simulator exposing (simulator)
 
-import Effects exposing (Effect(..), Effects)
-import Effects.CommonSimulator as Common
 import Effects.LocalSimulator as Local
 import Main.Msg exposing (Msg)
+import Paack.Effects as Effects exposing (Effect(..), Effects)
+import Paack.Effects.CommonSimulator as Common
 import ProgramTest exposing (SimulatedEffect)
 import SimulatedEffect.Cmd as SimulatedCmd
 

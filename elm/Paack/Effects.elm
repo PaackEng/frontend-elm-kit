@@ -1,4 +1,4 @@
-module Effects exposing
+module Paack.Effects exposing
     ( Effects, fromLocal
     , none, batch, map
     , cmd, loopMsg
@@ -36,12 +36,12 @@ module Effects exposing
 -}
 
 import Browser.Dom as Dom
-import Effects.Common as Common exposing (CommonEffect, mapCommonEffect)
 import Effects.Local as Local exposing (LocalEffect, mapLocalEffect)
 import Graphql.Operation exposing (RootMutation, RootQuery)
 import Graphql.SelectionSet exposing (SelectionSet)
 import Http as ElmHttp
 import Json.Decode exposing (Decoder)
+import Paack.Effects.Common as Common exposing (CommonEffect, mapCommonEffect)
 import Remote.Response exposing (GraphqlHttpResponse)
 import Time
 import UI.Analytics as UI
