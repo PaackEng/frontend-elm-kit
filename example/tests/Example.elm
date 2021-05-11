@@ -10,10 +10,10 @@ import Paack.Auth.Main as Auth
 import Paack.Auth.User as User
 import Paack.Effects exposing (Effects)
 import Paack.Effects.Simulator exposing (simulator)
-import ProgramTest exposing (ProgramDefinition, ProgramTest, clickButton, expectViewHas)
+import ProgramTest exposing (ProgramDefinition, ProgramTest, expectViewHas)
 import SimulatedEffect.Ports
 import Test exposing (..)
-import Test.Html.Selector exposing (class, text)
+import Test.Html.Selector exposing (text)
 import Time
 
 
