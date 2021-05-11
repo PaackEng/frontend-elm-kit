@@ -19,6 +19,7 @@ jobs:
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
+        working-directory: ${{env.working-directory}}
 
       - uses: actions/cache@v2.1.5
         id: yarn-cache
@@ -30,9 +31,12 @@ jobs:
 
       - name: Install/Update dependencies
         run: yarn install
+        working-directory: ${{env.working-directory}}
 
       - name: Validate elm
         uses: PaackEng/elm-validate-action@v1.1.1
+        working-directory: ${{env.working-directory}}
 
       - name: Run build
         run: yarn run build
+        working-directory: ${{env.working-directory}}
