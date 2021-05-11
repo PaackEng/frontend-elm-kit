@@ -1,10 +1,12 @@
-module Paack.Rollbar.Dispatch exposing (Channel(..), Effect(..), Payload, sendError)
+module Paack.Rollbar.Dispatch exposing (sendError)
 
 {-| Composes the error effect
 -}
 
+import Dict
 import Effects.Local as LocalEffects
-import Paack.Effects as Effects
+import Json.Encode as Encode
+import Paack.Effects as Effects exposing (Effects)
 import Paack.Rollbar exposing (RollbarPayload(..))
 import Paack.Rollbar.Effect as RollbarEffect
 import Rollbar
@@ -12,16 +14,13 @@ import Rollbar
 
 {-|
 
-  - parent:
-    The (Elm) message where did it occurred.
+  - parent: The (Elm) message where did it occurred.
     In rollbar as "body"."message"."parent"
     E.g.: `"Pages.FleetAssignment.DriversFetched"`
-  - payload.description:
-    The error union identification.
+  - payload.description: The error union identification.
     In rollbar as "body"."message"."description"
     E.g.: `"Api.Drivers.List.InternalServerError"`
-  - payload.details:
-    Custom additions to "body"."message"
+  - payload.details: Custom additions to "body"."message"
     E.g.: `Dict.fromList [ "bad-status", (Encode.int 404) ]`
 
 -}

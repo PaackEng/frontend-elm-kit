@@ -15,12 +15,9 @@ type Effect
 
 {-|
 
-  - title:
-    Usually `(parent ++ "/" ++ description)`
-  - body:
-    In rollbar as "body"."message"
-  - level:
-    As seen in rollbar dashboard
+  - title: Usually `(parent ++ "/" ++ description)`
+  - body: In rollbar as "body"."message"
+  - level: As seen in rollbar dashboard
 
 -}
 type alias Payload =
