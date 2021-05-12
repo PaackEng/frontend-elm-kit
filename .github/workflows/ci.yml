@@ -38,6 +38,10 @@ jobs:
         with:
           elm-working-directory: ${{env.working-directory}}
 
+      - name: Run Prettier
+        run: yarn run review:prettier
+        working-directory: ${{env.working-directory}}
+
       - name: Run build
         run: yarn run build
         working-directory: ${{env.working-directory}}
