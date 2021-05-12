@@ -35,12 +35,8 @@ jobs:
         run: yarn install
         working-directory: ${{env.working-directory}}
 
-      - name: Run elm-review
-        run: yarn run review:elm
-        working-directory: ${{env.working-directory}}
-
-      - name: Run Prettier
-        run: yarn run review:prettier
+      - name: Review code
+        run: yarn run review
         working-directory: ${{env.working-directory}}
 
   test:

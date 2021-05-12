@@ -10,6 +10,7 @@
   "main": "index.ts",
   "scripts": {
     "start": "parcel serve ./index.html",
+    "review": "yarn run:prettier && yarn run review:elm",
     "review:elm": "elm-review",
     "review:prettier": "prettier --check .",
     "build": "parcel build ./index.html --out-dir ./dist/",
