@@ -1,4 +1,4 @@
-module Paack.Rollbar.Dispatch exposing (sendError)
+module Paack.Rollbar.Dispatch exposing (sendError, sendResponseError)
 
 {-| Composes the error effect
 -}
@@ -9,6 +9,8 @@ import Json.Encode as Encode
 import Paack.Effects as Effects exposing (Effects)
 import Paack.Rollbar exposing (RollbarPayload(..))
 import Paack.Rollbar.Effect as RollbarEffect
+import Remote.Errors exposing (RemoteError)
+import Remote.Response as Response exposing (Response)
 import Rollbar
 
 
@@ -46,3 +48,15 @@ sendError parent payload =
                 }
                 |> LocalEffects.RollbarEffect
                 |> Effects.fromLocal
+
+
+sendResponseError :
+    String
+    -> (RemoteError transportError customError -> RollbarPayload)
+    -> Response transportError customError object
+    -> Effects msg
+sendResponseError parent errorToPayload response =
+    Response.toError response
+        |> Maybe.map
+            (errorToPayload >> sendError parent)
+        |> Maybe.withDefault Effects.none
