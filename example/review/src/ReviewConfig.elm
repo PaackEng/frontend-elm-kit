@@ -1,6 +1,6 @@
 module ReviewConfig exposing (config)
 
-{-| This package carries the configuration rules used for elm-review by Paack!
+{-|
 
 
 # Definition
