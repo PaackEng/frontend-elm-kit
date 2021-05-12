@@ -1,16 +1,23 @@
 module Main.Model exposing (Flags, Model, authConfig, init)
 
+import Data.Environment as Environment exposing (Environment)
 import Effects.Local exposing (LocalEffect(..))
 import Main.Msg as Msg exposing (Msg)
 import Paack.Auth.Main as Auth
 import Paack.Auth.User exposing (User)
 import Paack.Effects as Effects exposing (Effects, fromLocal)
+import Paack.Rollbar as Rollbar
+import Paack.Rollbar.Dispatch as Rollbar
 import Url exposing (Url)
 
 
 type alias Model =
-    { auth : Auth.Model
+    { appConfig : { environment : Environment }
+    , auth : Auth.Model
+    , codeVersion : String
+    , url : Url
     , user : Maybe User
+    , rollbarToken : Rollbar.MaybeToken
     }
 
 
@@ -19,6 +26,7 @@ type alias Flags =
     , randomSeed2 : Int
     , randomSeed3 : Int
     , randomSeed4 : Int
+    , rollbarToken : String
     }
 
 
@@ -28,13 +36,21 @@ authConfig =
 
 
 init : Flags -> Url -> () -> ( Model, Effects Msg )
-init _ _ _ =
+init flags url _ =
     let
         ( auth, authEffects ) =
             Auth.init authConfig
     in
-    ( { auth = auth
+    ( { appConfig = { environment = Environment.Development }
+      , auth = auth
+      , codeVersion = "git"
+      , url = url
       , user = Nothing
+      , rollbarToken = Rollbar.initToken flags.rollbarToken
       }
-    , fromLocal <| AuthEffect authEffects
+    , Effects.batch
+        [ fromLocal <| AuthEffect authEffects
+        , Rollbar.errorPayload "example"
+            |> Rollbar.sendError "Main.Model.init"
+        ]
     )

@@ -16,8 +16,13 @@ update msg model =
         LinkClicked _ ->
             ( model, Effects.none )
 
-        UrlChanged _ ->
+        RollbarFeedback _ ->
             ( model, Effects.none )
+
+        UrlChanged newUrl ->
+            ( { model | url = newUrl }
+            , Effects.none
+            )
 
 
 forAuth : Auth.Msg -> Model -> ( Model, Effects Msg )

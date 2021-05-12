@@ -1,6 +1,6 @@
 {
   "name": "@PaackEng/frontend-elm-kit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "",
   "private": false,
@@ -14,8 +14,8 @@
     "type": "git",
     "url": "git+https://github.com/PaackEng/frontend-elm-kit.git"
   },
-  "author": "",
-  "license": "",
+  "author": "PaackEng",
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/PaackEng/frontend-elm-kit/issues"
   },
@@ -29,5 +29,9 @@
   },
   "devDependencies": {
     "typescript": "^4.2.4"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
   }
 }
