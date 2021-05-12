@@ -32,6 +32,7 @@ mockFlags =
     , randomSeed2 = -1
     , randomSeed3 = -1
     , randomSeed4 = -1
+    , rollbarToken = ""
     }
 
 
