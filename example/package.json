@@ -23,6 +23,7 @@
     "elm-format": "^0.8.5",
     "elm-hot": "^1.1.6",
     "elm-review": "^2.5.1",
+    "elm-test": "^0.19.1-revision6",
     "node-elm-compiler": "^5.0.6",
     "parcel-bundler": "^1.12.5",
     "prettier": "^2.3.0",
