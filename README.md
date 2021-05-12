@@ -48,7 +48,7 @@ In order to integrate this package into your project there are some extra change
 
 ## Suggestions
 
-## Rollbar
+### Rollbar
 
 - Don't forget to update the url value in model when it changes;
 - Compose errors with `Paack.Rollbar` module;
