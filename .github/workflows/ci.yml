@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
   push:
-    branches: "*"
+    branches: '*'
 
 jobs:
   validate:
@@ -33,17 +33,12 @@ jobs:
         run: yarn install
         working-directory: ${{env.working-directory}}
 
-      - name: Validate elm
-        uses: PaackEng/elm-validate-action@v1.1.1
-        with:
-          elm-working-directory: ${{env.working-directory}}
+      - name: Run elm-review
+        run: yarn run review:elm
+        working-directory: ${{env.working-directory}}
 
       - name: Run Prettier
         run: yarn run review:prettier
-        working-directory: ${{env.working-directory}}
-
-      - name: Run build
-        run: yarn run build
         working-directory: ${{env.working-directory}}
 
   test:
