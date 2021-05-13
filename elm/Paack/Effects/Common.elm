@@ -2,7 +2,7 @@ module Paack.Effects.Common exposing
     ( CommonEffect(..), mapCommonEffect
     , cmd, loopMsg
     , pushUrl, replaceUrl, timeHere, domGetElement, domSetViewportOf
-    , uuidGenerator, httpRequest, paackUI
+    , uuidGenerator, httpRequest
     , GraphqlRequestEffect, HttpRequestEffect, graphqlQuery, graphqlMutation
     )
 
@@ -18,7 +18,7 @@ module Paack.Effects.Common exposing
 
 @docs cmd, loopMsg
 @docs pushUrl, replaceUrl, timeHere, domGetElement, domSetViewportOf
-@docs uuidGenerator, httpRequest, paackUI
+@docs uuidGenerator, httpRequest
 @docs GraphqlRequestEffect, HttpRequestEffect, graphqlQuery, graphqlMutation
 
 -}
@@ -32,8 +32,6 @@ import Http as ElmHttp
 import Json.Decode as Decode exposing (Decoder, Value)
 import Remote.Response as Response exposing (GraphqlHttpResponse)
 import Time
-import UI.Analytics as UI
-import UI.Effect as UI
 import UUID exposing (UUID, decoder)
 
 
@@ -231,21 +229,6 @@ graphqlMutation config (SelectionSet selector decoder) =
         , extraHeaders = config.extraHeaders
         , url = config.url
         }
-
-
-paackUI : (UI.Analytics -> ()) -> UI.Effect msg -> List (CommonEffect msg)
-paackUI _ =
-    let
-        handler effect =
-            case effect of
-                UI.MsgToCmd msg ->
-                    List.singleton <| loopMsg msg
-
-                UI.Analytics _ ->
-                    -- mixpanelEnqueue <| analyticsToEffect analytics
-                    []
-    in
-    List.map handler >> List.concat
 
 
 flip : (a -> b -> c) -> b -> a -> c

@@ -1,10 +1,12 @@
 module Effects.Local exposing
     ( LocalEffect(..)
+    , fromUIAnalytics
     , mapLocalEffect
     )
 
 import Paack.Auth.Main as Auth
 import Paack.Rollbar.Effect as Rollbar
+import UI.Analytics as UI
 
 
 type LocalEffect msg
@@ -20,3 +22,8 @@ mapLocalEffect _ effect =
 
         RollbarEffect subEffect ->
             RollbarEffect subEffect
+
+
+fromUIAnalytics : UI.Analytics -> List (LocalEffect msg)
+fromUIAnalytics _ =
+    []
