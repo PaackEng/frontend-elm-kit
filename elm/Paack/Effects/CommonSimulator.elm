@@ -1,4 +1,4 @@
-module Effects.CommonSimulator exposing (effectPerform)
+module Paack.Effects.CommonSimulator exposing (effectPerform)
 
 import Graphql.Http as Graphql
 import Graphql.Operation exposing (RootMutation, RootQuery)

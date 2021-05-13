@@ -6,7 +6,7 @@ import Json.Encode as Encode
 import Paack.Rollbar exposing (RollbarPayload(..))
 
 
-errorToRollbar : ElmHttp.HttpError -> RollbarPayload
+errorToRollbar : ElmHttp.Error -> RollbarPayload
 errorToRollbar httpError =
     case httpError of
         ElmHttp.BadUrl url ->

@@ -9,17 +9,29 @@
   ],
   "main": "index.ts",
   "scripts": {
-    "start": "parcel serve ./index.html"
+    "start": "parcel serve ./index.html",
+    "review": "yarn run review:prettier && yarn run review:elm",
+    "review:elm": "elm-review",
+    "review:prettier": "prettier --check .",
+    "build": "parcel build ./index.html --out-dir ./dist/",
+    "test": "elm-test"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "parcel-bundler": "^1.12.5"
-  },
+  "license": "UNLICENSED",
+  "dependencies": {},
   "devDependencies": {
     "elm": "^0.19.1-5",
+    "elm-format": "^0.8.5",
     "elm-hot": "^1.1.6",
+    "elm-review": "^2.5.1",
+    "elm-test": "^0.19.1-revision6",
     "node-elm-compiler": "^5.0.6",
+    "parcel-bundler": "^1.12.5",
+    "prettier": "^2.3.0",
     "typescript": "^4.2.4"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
   }
 }
