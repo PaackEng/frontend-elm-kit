@@ -179,6 +179,15 @@ graphqlMutation config selection =
     fromCommon <| Common.graphqlMutation config selection
 
 
-paackUI : (UI.Analytics -> ()) -> UI.Effect msg -> Effects msg
-paackUI analyticsApplier subEffects =
-    List.map CommonEffect <| Common.paackUI analyticsApplier subEffects
+paackUI : (UI.Analytics -> Effects msg) -> UI.Effect msg -> Effects msg
+paackUI applier =
+    let
+        handler effect =
+            case effect of
+                UI.MsgToCmd msg ->
+                    loopMsg msg
+
+                UI.Analytics analytics ->
+                    applier analytics
+    in
+    List.map handler >> List.concat
