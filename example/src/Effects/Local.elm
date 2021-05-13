@@ -5,7 +5,6 @@ module Effects.Local exposing
 
 import Paack.Auth.Main as Auth
 import Paack.Rollbar.Effect as Rollbar
-import UI.Analytics as UI
 
 
 type LocalEffect msg
