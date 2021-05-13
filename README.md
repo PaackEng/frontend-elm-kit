@@ -56,6 +56,21 @@ In order to integrate this package into your project there are some extra change
 - Easy transform Graphql errors with `Paack.Rollbar.Graphql` module;
 - Produce the effect with `Paack.Rollbar.Dispatch`.
 
+## Deploying
+
+Bump the version according to the change that was made. Once it's merged to `main` just push a tag in the format `v*.*.*`.
+
+```diff
+  "name": "@PaackEng/frontend-elm-kit",
+- "version": "0.0.3",
++ "version": "1.0.0",
+```
+
+```bash
+$ git tag -a v1.0.0 -m "First version"
+$ git push --tags
+```
+
 ## Running the example
 
 Navigate to the example folder, then create a `.env` file and fill in the values (you can copy them from any project where Auth0 is configured). After that you can run it with `yarn start`.
