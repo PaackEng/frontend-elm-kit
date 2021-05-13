@@ -1,8 +1,10 @@
-# frontend-elm-kit
-
-![Paack's Frontend Elm KITT](https://repository-images.githubusercontent.com/358355444/10442e00-b1b6-11eb-98c7-90c0f758b844)
-
-A set of tools and integrations used by our Elm applications.
+<div align="center">
+  <img src="https://repository-images.githubusercontent.com/358355444/10442e00-b1b6-11eb-98c7-90c0f758b844">
+  <h1>frontend-elm-kit</h1>
+  A set of tools and integrations used by our Elm applications.
+</div>
+<br>
+<br>
 
 ## Installing
 
