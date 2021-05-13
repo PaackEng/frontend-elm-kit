@@ -179,7 +179,7 @@ graphqlMutation config selection =
     fromCommon <| Common.graphqlMutation config selection
 
 
-paackUI : (UI.Analytics -> List (Local.LocalEffect msg)) -> UI.Effect msg -> Effects msg
+paackUI : (UI.Analytics -> Effects msg) -> UI.Effect msg -> Effects msg
 paackUI applier =
     let
         handler effect =
@@ -188,6 +188,6 @@ paackUI applier =
                     loopMsg msg
 
                 UI.Analytics analytics ->
-                    List.map LocalEffect <| applier analytics
+                    applier analytics
     in
     List.map handler >> List.concat
