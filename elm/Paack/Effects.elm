@@ -44,6 +44,7 @@ import Json.Decode exposing (Decoder)
 import Paack.Effects.Common as Common exposing (CommonEffect, mapCommonEffect)
 import Remote.Response exposing (GraphqlHttpResponse)
 import Time
+import UI.Analytics as UI
 import UI.Effect as UI
 import UUID exposing (UUID)
 
@@ -178,8 +179,8 @@ graphqlMutation config selection =
     fromCommon <| Common.graphqlMutation config selection
 
 
-paackUI : UI.Effect msg -> Effects msg
-paackUI =
+paackUI : (UI.Analytics -> List (Local.LocalEffect msg)) -> UI.Effect msg -> Effects msg
+paackUI applier =
     let
         handler effect =
             case effect of
@@ -187,6 +188,6 @@ paackUI =
                     loopMsg msg
 
                 UI.Analytics analytics ->
-                    List.map LocalEffect <| Local.fromUIAnalytics analytics
+                    List.map LocalEffect <| applier analytics
     in
     List.map handler >> List.concat

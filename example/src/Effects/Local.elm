@@ -1,6 +1,5 @@
 module Effects.Local exposing
     ( LocalEffect(..)
-    , fromUIAnalytics
     , mapLocalEffect
     )
 
@@ -22,8 +21,3 @@ mapLocalEffect _ effect =
 
         RollbarEffect subEffect ->
             RollbarEffect subEffect
-
-
-fromUIAnalytics : UI.Analytics -> List (LocalEffect msg)
-fromUIAnalytics _ =
-    []
