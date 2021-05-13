@@ -8,11 +8,11 @@ Describe here
 
 #### :pushpin: Jira Issue
 
-[JIRA-CODE](jira-url)
+[JIRA-CODE](jira-url) or Not tracked
 
 #### :no_good: Blocked by
 
-[JIRA-CODE](jira-url) or [PR#CODE](pr-url)
+[JIRA-CODE](jira-url) or [PR#CODE](pr-url) or Not blocked
 
 #### :clipboard: Pending
 
