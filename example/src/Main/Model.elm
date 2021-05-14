@@ -12,9 +12,8 @@ import Url exposing (Url)
 
 
 type alias Model =
-    { appConfig : { environment : Environment }
+    { appConfig : { environment : Environment, version : String }
     , auth : Auth.Model
-    , codeVersion : String
     , url : Url
     , user : Maybe User
     , rollbarToken : Rollbar.MaybeToken
@@ -41,9 +40,11 @@ init flags url _ =
         ( auth, authEffects ) =
             Auth.init authConfig
     in
-    ( { appConfig = { environment = Environment.Development }
+    ( { appConfig =
+            { environment = Environment.Development
+            , version = " v0.0.0-1-g99c0ff3"
+            }
       , auth = auth
-      , codeVersion = "git"
       , url = url
       , user = Nothing
       , rollbarToken = Rollbar.initToken flags.rollbarToken
