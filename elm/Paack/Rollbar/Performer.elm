@@ -42,17 +42,20 @@ performEffectWithModel :
     (RollbarResult -> msg)
     ->
         { a
-            | appConfig : { b | environment : Environment }
+            | appConfig :
+                { b
+                    | environment : Environment
+                    , version : String
+                }
             , url : Url
             , rollbarToken : MaybeToken
-            , codeVersion : String
         }
     -> Effect
     -> Cmd msg
-performEffectWithModel feedbackMsg { appConfig, codeVersion, rollbarToken, url } effect =
+performEffectWithModel feedbackMsg { appConfig, rollbarToken, url } effect =
     performEffect feedbackMsg
         appConfig.environment
-        codeVersion
+        appConfig.version
         rollbarToken
         url
         effect
