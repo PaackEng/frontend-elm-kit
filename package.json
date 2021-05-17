@@ -4,6 +4,13 @@
   "description": "",
   "main": "",
   "private": false,
+  "files": [
+    "elm",
+    "prettier",
+    "auth0",
+    "eslintconfig.json",
+    "tsconfig.json"
+  ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
