@@ -8,7 +8,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "scripts": {
-    "postinstall": ""
+    "lint": "eslint auth0/**/*.ts"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,9 @@
     "elm": "^0.19.1-5"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.24.0",
+    "@typescript-eslint/parser": "^4.24.0",
+    "eslint": "^7.26.0",
     "typescript": "^4.2.4"
   },
   "prettier": {
