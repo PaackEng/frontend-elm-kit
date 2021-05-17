@@ -1,6 +1,6 @@
 {
   "name": "@PaackEng/frontend-elm-kit",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "",
   "private": false,
@@ -15,7 +15,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "scripts": {
-    "lint": "eslint auth0/**/*.ts",
+    "lint": "eslint auth0/**/*.ts --config eslintconfig.json",
     "tsc": "tsc --noEmit -p . --pretty"
   },
   "repository": {
