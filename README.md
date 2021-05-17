@@ -1,8 +1,10 @@
-# frontend-elm-kit
-
-![Paack's Frontend Elm KITT](https://repository-images.githubusercontent.com/358355444/10442e00-b1b6-11eb-98c7-90c0f758b844)
-
-A set of tools and integrations used by our Elm applications.
+<div align="center">
+  <img src="https://repository-images.githubusercontent.com/358355444/10442e00-b1b6-11eb-98c7-90c0f758b844">
+  <h1>frontend-elm-kit</h1>
+  A set of tools and integrations used by our Elm applications.
+</div>
+<br>
+<br>
 
 ## Installing
 
@@ -55,6 +57,21 @@ In order to integrate this package into your project there are some extra change
 - Easy transform Http errors with `Paack.Rollbar.Http` module;
 - Easy transform Graphql errors with `Paack.Rollbar.Graphql` module;
 - Produce the effect with `Paack.Rollbar.Dispatch`.
+
+## Deploying
+
+Bump the version according to the change that was made. Once it's merged to `main` just push a tag in the format `v*.*.*`.
+
+```diff
+  "name": "@PaackEng/frontend-elm-kit",
+- "version": "0.0.3",
++ "version": "1.0.0",
+```
+
+```bash
+$ git tag -a v1.0.0 -m "First version"
+$ git push --tags
+```
 
 ## Running the example
 
