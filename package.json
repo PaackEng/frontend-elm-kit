@@ -8,7 +8,8 @@
     "registry": "https://npm.pkg.github.com"
   },
   "scripts": {
-    "lint": "eslint auth0/**/*.ts"
+    "lint": "eslint auth0/**/*.ts",
+    "tsc": "tsc --noEmit -p . --pretty"
   },
   "repository": {
     "type": "git",
