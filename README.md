@@ -60,17 +60,6 @@ This package provides default configuration for Eslint, Prettier and TypeScript.
 
 ```diff
 {
--  "env": {
--    "browser": true,
--    "es2020": true
--  },
--  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
--  "parser": "@typescript-eslint/parser",
--  "parserOptions": {
--    "ecmaVersion": 11
--  },
--  "plugins": ["@typescript-eslint"],
--  "rules": {}
 +  "extends": "./node_modules/@PaackEng/frontend-elm-kit/eslintconfig.json"
 }
 ```
@@ -78,30 +67,19 @@ This package provides default configuration for Eslint, Prettier and TypeScript.
 **package.json**
 
 ```diff
-"name": "lmo-web",
-"version": "1.0.0",
-"description": "Last-Mile Operations",
-+  "prettier": "@PaackEng/frontend-elm-kit/prettier",
+  "name": "lmo-web",
+  "version": "1.0.0",
+  "description": "Last-Mile Operations",
++ "prettier": "@PaackEng/frontend-elm-kit/prettier",
 ```
 
 **tsconfig.json**
 
 ```diff
 {
--  "$schema": "https://json.schemastore.org/tsconfig",
--  "include": ["web/ts/*"],
--  "compilerOptions": {
--    "lib": ["es2020", "dom"],
--    "module": "commonjs",
--    "target": "es2020",
--    "strict": true,
--    "esModuleInterop": true,
--    "skipLibCheck": true,
--    "forceConsistentCasingInFileNames": true
--  }
 +  "extends": "@PaackEng/frontend-elm-kit/tsconfig.json",
 +  "include": ["web/ts"]
- }
+}
 ```
 
 ## Suggestions
