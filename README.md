@@ -38,6 +38,7 @@ In order to integrate this package into your project there are some extra change
 
 - Install all the [required packages](https://github.com/PaackEng/frontend-elm-kit/blob/main/example/elm.json) with exception of `elm/html`
 - Make sure that the modules `Data.Environment`, `Main.Model`, `Main.Msg`, `Main.Update`, `Effects.Local` and `Effects.Performer` all exist. Look at the example folder for a minimal setup
+- If you're using parcel v1 disable sourcemaps with `--no-source-maps`
 
 ### Auth0
 
