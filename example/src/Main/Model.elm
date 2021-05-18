@@ -31,7 +31,9 @@ type alias Flags =
 
 authConfig : Auth.Config Msg
 authConfig =
-    { toExternalMsg = Msg.ForAuth }
+    { toExternalMsg = Msg.ForAuth
+    , onLoginResult = Nothing
+    }
 
 
 init : Flags -> Url -> () -> ( Model, Effects Msg )
