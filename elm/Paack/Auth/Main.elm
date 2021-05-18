@@ -32,6 +32,7 @@ type Model
 
 type alias Config msg =
     { toExternalMsg : Msg -> msg
+    , onLoginResult : Maybe (AuthResult.Result -> msg)
     }
 
 
@@ -112,8 +113,16 @@ update _ msg model =
 
 
 subscriptions : Config msg -> Sub msg
-subscriptions { toExternalMsg } =
-    Ports.authResult (SessionAuthResult >> toExternalMsg)
+subscriptions { toExternalMsg, onLoginResult } =
+    Sub.batch
+        [ Ports.authResult (SessionAuthResult >> toExternalMsg)
+        , case onLoginResult of
+            Just msg ->
+                Ports.authResult (AuthResult.decode >> msg)
+
+            Nothing ->
+                Sub.none
+        ]
 
 
 checkSession : Config msg -> msg
