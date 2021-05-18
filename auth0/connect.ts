@@ -1,6 +1,6 @@
 import { Auth0Client } from '@auth0/auth0-spa-js';
 import * as auth from './auth';
-import { AuthPorts } from './elm';
+import { AuthPorts } from './types';
 
 export function connectAppToAuth(
   app: ElmApp<AuthPorts>,

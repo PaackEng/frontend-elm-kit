@@ -9,11 +9,11 @@
   ],
   "main": "index.ts",
   "scripts": {
-    "start": "parcel serve ./index.html",
+    "start": "parcel serve --no-source-maps ./index.html",
     "review": "yarn run review:prettier && yarn run review:elm",
     "review:elm": "elm-review",
     "review:prettier": "prettier --check .",
-    "build": "parcel build ./index.html --out-dir ./dist/",
+    "build": "parcel build ./index.html --out-dir ./dist/ --no-source-maps",
     "test": "elm-test"
   },
   "author": "",

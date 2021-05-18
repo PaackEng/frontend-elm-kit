@@ -1,5 +1,9 @@
-type AuthError = { error: string; errorDescription: string };
-type AuthSuccess = { token: string; userData: User | undefined };
+import createAuth0Client, {
+  AuthenticationError,
+  Auth0Client,
+} from '@auth0/auth0-spa-js';
+
+import { AuthSuccess, AuthError } from './types';
 
 function isSuccessUrl(searchParams: URLSearchParams): boolean {
   return searchParams.has('code') && searchParams.has('state');

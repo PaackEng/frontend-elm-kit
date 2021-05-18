@@ -38,6 +38,10 @@ In order to integrate this package into your project there are some extra change
 
 - Install all the [required packages](https://github.com/PaackEng/frontend-elm-kit/blob/main/example/elm.json) with exception of `elm/html`
 - Make sure that the modules `Data.Environment`, `Main.Model`, `Main.Msg`, `Main.Update`, `Effects.Local` and `Effects.Performer` all exist. Look at the example folder for a minimal setup
+- If you're using parcel v1 disable sourcemaps with `--no-source-maps`
+
+### Auth0
+
 - Ensure that the ports `checkSession`, `login` and `logout` are all present
 - Provide all the four seeds (`randomSeed1`, 2, 3 and 4) in the app's `Flags`
 - Install the [Auth0 SPA SDK](https://github.com/auth0/auth0-spa-js)
@@ -47,6 +51,36 @@ In order to integrate this package into your project there are some extra change
 
 - Make sure your model includes `appConfig.environment`. `codeVersion`, `rollbarToken` and `url`;
 - You'll need a message for receiving feedback, see [how the example performs the effect](https://github.com/PaackEng/frontend-elm-kit/blob/main/example/src/Effects/LocalPerformer.elm);
+
+### Extending configuration
+
+This package provides default configuration for Eslint, Prettier and TypeScript. Here's how to extend the config:
+
+**.eslintrc.json**
+
+```diff
+{
++  "extends": "./node_modules/@PaackEng/frontend-elm-kit/eslintconfig.json"
+}
+```
+
+**package.json**
+
+```diff
+  "name": "lmo-web",
+  "version": "1.0.0",
+  "description": "Last-Mile Operations",
++ "prettier": "@PaackEng/frontend-elm-kit/prettier",
+```
+
+**tsconfig.json**
+
+```diff
+{
++  "extends": "@PaackEng/frontend-elm-kit/tsconfig.json",
++  "include": ["web/ts"]
+}
+```
 
 ## Suggestions
 

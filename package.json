@@ -1,14 +1,22 @@
 {
   "name": "@PaackEng/frontend-elm-kit",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "",
   "private": false,
+  "files": [
+    "elm",
+    "prettier",
+    "auth0",
+    "eslintconfig.json",
+    "tsconfig.json"
+  ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
   "scripts": {
-    "postinstall": ""
+    "lint": "eslint auth0/**/*.ts --config eslintconfig.json",
+    "tsc": "tsc --noEmit -p . --pretty"
   },
   "repository": {
     "type": "git",
@@ -28,6 +36,9 @@
     "elm": "^0.19.1-5"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.24.0",
+    "@typescript-eslint/parser": "^4.24.0",
+    "eslint": "^7.26.0",
     "typescript": "^4.2.4"
   },
   "prettier": {

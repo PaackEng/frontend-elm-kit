@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime';
 import { Elm } from './src/Main.elm';
 import { connectAppToAuth } from '../auth0/connect';
 
