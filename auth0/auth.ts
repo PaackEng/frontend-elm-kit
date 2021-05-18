@@ -81,7 +81,8 @@ async function checkRedirect(
   if (isSuccessUrl(searchParams) || isFailureUrl(searchParams)) {
     try {
       await client.handleRedirectCallback();
-      return await whenSuccess(client);
+      if (autoLogin)
+        return await whenSuccess(client);
     } catch (err) {
       if (err instanceof AuthenticationError) {
         throw new PaackAuthError(err);
@@ -91,7 +92,10 @@ async function checkRedirect(
     }
   }
 
-  return checkSession(client, autoLogin);
+  if(autoLogin)
+    return checkSession(client, autoLogin);
+  else
+    return 'NO_FEEDBACK';
 }
 
 async function checkSession(
