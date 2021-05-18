@@ -83,6 +83,8 @@ async function checkRedirect(
       await client.handleRedirectCallback();
       if (autoLogin)
         return await whenSuccess(client);
+      else
+        return 'NO_FEEDBACK';
     } catch (err) {
       if (err instanceof AuthenticationError) {
         throw new PaackAuthError(err);
@@ -90,9 +92,7 @@ async function checkRedirect(
         throw new InvalidError(err);
       }
     }
-  }
-
-  if(autoLogin)
+  } else if(autoLogin)
     return checkSession(client, autoLogin);
   else
     return 'NO_FEEDBACK';
