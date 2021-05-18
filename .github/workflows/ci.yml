@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
     env:
-      working-directory: ./example
+      example-dir: ./example
 
     steps:
       - name: Checkout
@@ -21,7 +21,7 @@ jobs:
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{env.example-dir}}
 
       - uses: actions/cache@v2
         id: yarn-cache
@@ -33,17 +33,20 @@ jobs:
 
       - name: Install/Update dependencies
         run: yarn install
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{env.example-dir}}
 
-      - name: Review code
+      - name: Lint code
+        run: yarn run lint
+
+      - name: Run elm-review
         run: yarn run review
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{env.example-dir}}
 
   test:
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
     env:
-      working-directory: ./example
+      example-dir: ./example
 
     steps:
       - name: Checkout
@@ -52,7 +55,7 @@ jobs:
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{env.example-dir}}
 
       - uses: actions/cache@v2
         id: yarn-cache
@@ -64,8 +67,8 @@ jobs:
 
       - name: Install/Update dependencies
         run: yarn install
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{env.example-dir}}
 
       - name: Run tests
         run: yarn run test
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{env.example-dir}}
