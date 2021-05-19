@@ -1,8 +1,8 @@
 module Paack.Auth.Result exposing (Error(..), Result, decode)
 
-import Paack.Auth.User as User exposing (User)
 import Json.Decode as Decode exposing (Decoder)
 import Json.Decode.Pipeline as JsonPipe
+import Paack.Auth.User as User exposing (User)
 
 
 type alias Result =
@@ -10,10 +10,8 @@ type alias Result =
 
 
 type Error
-    = AuthenticationError
-        { error : String
-        , errorDescription : String
-        }
+    = AuthenticationFailed { description : String }
+    | NoSession
     | DecodeError Decode.Error
 
 
@@ -33,14 +31,21 @@ decode value =
 errorDecoder : Decoder Error
 errorDecoder =
     Decode.succeed
-        (\error description ->
-            AuthenticationError
-                { error = error
-                , errorDescription = description
-                }
-        )
+        Tuple.pair
         |> JsonPipe.required "error" Decode.string
         |> JsonPipe.required "errorDescription" Decode.string
+        |> Decode.andThen
+            (\( error, errorDescription ) ->
+                case error of
+                    "AUTH_FAILED" ->
+                        Decode.succeed <| AuthenticationFailed { description = errorDescription }
+
+                    "NO_SESSION" ->
+                        Decode.succeed NoSession
+
+                    _ ->
+                        Decode.fail errorDescription
+            )
 
 
 merge : Result.Result a a -> a

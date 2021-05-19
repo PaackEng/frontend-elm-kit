@@ -73,15 +73,14 @@ async function whenSuccess(client: Auth0Client): Promise<AuthSuccess> {
   return { token, userData: user };
 }
 
-async function checkRedirect(
+async function checkSession(
   client: Auth0Client,
-  autoLogin: boolean,
+  whenNotAuthenticated: 'FORCE_LOGIN' | 'RETURN_ERROR',
 ): Promise<AuthSuccess | 'NO_FEEDBACK'> {
   const searchParams = new URLSearchParams(window.location.search);
   if (isSuccessUrl(searchParams) || isFailureUrl(searchParams)) {
     try {
       await client.handleRedirectCallback();
-      return await whenSuccess(client);
     } catch (err) {
       if (err instanceof AuthenticationError) {
         throw new PaackAuthError(err);
@@ -91,19 +90,12 @@ async function checkRedirect(
     }
   }
 
-  return checkSession(client, autoLogin);
-}
-
-async function checkSession(
-  client: Auth0Client,
-  autoLogin: boolean,
-): Promise<AuthSuccess | 'NO_FEEDBACK'> {
   await client.checkSession();
   const isAuthenticated = await client.isAuthenticated();
 
   if (isAuthenticated) {
     return whenSuccess(client);
-  } else if (autoLogin) {
+  } else if (whenNotAuthenticated === 'FORCE_LOGIN') {
     login(client);
     return 'NO_FEEDBACK';
   }
@@ -130,7 +122,6 @@ export {
   InvalidError,
   NoSessionError,
   PaackAuthError,
-  checkRedirect,
   checkSession,
   getAuth0Client,
   login,

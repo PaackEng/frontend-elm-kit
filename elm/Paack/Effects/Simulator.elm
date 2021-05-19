@@ -18,7 +18,7 @@ simulator effects =
 
 effectsApplier : Effects.Effect Msg -> ( Int, SimulatedEffect Msg ) -> ( Int, SimulatedEffect Msg )
 effectsApplier effect ( i, accumulator ) =
-    ( i + 1, SimulatedCmd.batch [ effectPerform i effect, accumulator ] )
+    ( i + 1, SimulatedCmd.batch [ accumulator, effectPerform i effect ] )
 
 
 effectPerform : Int -> Effect Msg -> SimulatedEffect Msg

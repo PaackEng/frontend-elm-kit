@@ -1,8 +1,9 @@
 module Paack.Auth.Simulator exposing (simulator)
 
-import Paack.Auth.Main as Auth exposing (Config, Effect(..))
 import Iso8601
 import Json.Encode as Encode
+import Paack.Auth.Main as Auth exposing (Config, Effect(..))
+import Paack.Auth.Result as AuthResult
 import ProgramTest exposing (SimulatedEffect)
 import SimulatedEffect.Cmd as SimulatedCmd
 import SimulatedEffect.Navigation as Nav
@@ -33,7 +34,15 @@ loop msg =
 
 authResult : Config msg -> Encode.Value -> SimulatedEffect msg
 authResult config value =
-    loop <| Auth.mockResult config value
+    SimulatedCmd.batch
+        [ loop <| Auth.mockResult config value
+        , case config.onLoginResult of
+            Just msg ->
+                loop <| msg <| AuthResult.decode value
+
+            Nothing ->
+                SimulatedCmd.none
+        ]
 
 
 portLogin : Config msg -> SimulatedEffect msg
