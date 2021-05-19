@@ -5,7 +5,7 @@ import { AuthPorts, Config } from './types';
 export function connectAppToAuth(
   app: ElmApp<AuthPorts>,
   authClient: Promise<Auth0Client>,
-  config: Config = { checkSessionOnStart: true, loginOnNoSession: false },
+  config: Config = { checkSessionOnStart: true, loginOnNoSession: true },
 ): void {
   /* The following function handles notifying Elm's app about possible failures and or success.
     It does not returns a feedback only when the user is redirected to the login page.

@@ -18,12 +18,5 @@ const clientId = process.env.AUTH0_CLIENT_ID;
 const domain = process.env.AUTH0_DOMAIN;
 const audience = process.env.AUTH0_AUDIENCE;
 
-(async () => {
-  const authClient = await createAuth0Client({
-    domain,
-    client_id: clientId,
-    audience,
-  });
-
-  connectAppToAuth(app, authClient, true);
-})();
+const authClient = auth.getAuth0Client(authClientId, authDomain, authAudience);
+connectAppToAuth(app, authClient);
