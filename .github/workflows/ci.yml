@@ -35,10 +35,16 @@ jobs:
         run: yarn install
         working-directory: ${{env.example-dir}}
 
-      - name: Lint code
-        run: yarn run lint
+      - name: Lint TS code
+        run: yarn run eslint
 
-      - name: Run elm-review
+      - name: Check formatting
+        run: yarn run prettier
+
+      - name: Type-check TS
+        run: yarn run tsc
+
+      - name: Review Elm code
         run: yarn run review
         working-directory: ${{env.example-dir}}
 
