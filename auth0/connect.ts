@@ -1,11 +1,11 @@
 import { Auth0Client } from '@auth0/auth0-spa-js';
 import * as auth from './auth';
-import { AuthPorts } from './types';
+import { AuthPorts, Config } from './types';
 
 export function connectAppToAuth(
   app: ElmApp<AuthPorts>,
   authClient: Promise<Auth0Client>,
-  authAutoLogin: boolean,
+  config: Config = { checkSessionOnStart: true, loginOnNoSession: false },
 ): void {
   /* The following function handles notifying Elm's app about possible failures and or success.
     It does not returns a feedback only when the user is redirected to the login page.
@@ -19,7 +19,7 @@ export function connectAppToAuth(
     ) =>
     async (): Promise<void> => {
       try {
-        const result = await applier(await authClient, authAutoLogin);
+        const result = await applier(await authClient, config.loginOnNoSession);
         if (result !== 'NO_FEEDBACK') app.ports.authResult.send(result);
       } catch (err: unknown) {
         if (err instanceof auth.ElmTreatableError)
@@ -32,5 +32,5 @@ export function connectAppToAuth(
   app.ports.login.subscribe(async () => auth.login(await authClient));
   app.ports.checkSession.subscribe(withFeedback(auth.checkSession));
 
-  if (authAutoLogin) withFeedback(auth.checkSession)();
+  if (config.checkSessionOnStart) withFeedback(auth.checkSession)();
 }

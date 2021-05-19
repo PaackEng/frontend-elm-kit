@@ -7,6 +7,11 @@ export type AuthPorts = {
   authResult: PortToElm<AuthResult>;
 };
 
+export type Config = {
+  checkSessionOnStart: boolean;
+  loginOnNoSession: boolean;
+};
+
 export type AuthError = { error: string; errorDescription: string };
 export type AuthSuccess = { token: string; userData: User | undefined };
 export type AuthResult = AuthError | AuthSuccess;

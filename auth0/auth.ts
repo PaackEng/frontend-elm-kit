@@ -75,7 +75,7 @@ async function whenSuccess(client: Auth0Client): Promise<AuthSuccess> {
 
 async function checkSession(
   client: Auth0Client,
-  autoLogin: boolean,
+  loginOnNoSession: boolean,
 ): Promise<AuthSuccess | 'NO_FEEDBACK'> {
   const searchParams = new URLSearchParams(window.location.search);
   if (isSuccessUrl(searchParams) || isFailureUrl(searchParams)) {
@@ -95,7 +95,7 @@ async function checkSession(
 
   if (isAuthenticated) {
     return whenSuccess(client);
-  } else if (autoLogin) {
+  } else if (loginOnNoSession) {
     login(client);
     return 'NO_FEEDBACK';
   }
