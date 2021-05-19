@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
     env:
-      working-directory: ./example
+      example-dir: ./example
 
     steps:
       - name: Checkout
@@ -21,7 +21,7 @@ jobs:
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{env.example-dir}}
 
       - uses: actions/cache@v2
         id: yarn-cache
@@ -31,19 +31,31 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Install/Update dependencies
+      - name: Install root dependencies
         run: yarn install
-        working-directory: ${{env.working-directory}}
 
-      - name: Review code
+      - name: Lint TS code
+        run: yarn run eslint
+
+      - name: Check formatting
+        run: yarn run prettier
+
+      - name: Type-check TS
+        run: yarn run tsc
+
+      - name: Install example dependencies
+        run: yarn install
+        working-directory: ${{env.example-dir}}
+
+      - name: Review Elm code
         run: yarn run review
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{env.example-dir}}
 
   test:
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
     env:
-      working-directory: ./example
+      example-dir: ./example
 
     steps:
       - name: Checkout
@@ -52,7 +64,7 @@ jobs:
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{env.example-dir}}
 
       - uses: actions/cache@v2
         id: yarn-cache
@@ -64,8 +76,8 @@ jobs:
 
       - name: Install/Update dependencies
         run: yarn install
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{env.example-dir}}
 
       - name: Run tests
         run: yarn run test
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{env.example-dir}}

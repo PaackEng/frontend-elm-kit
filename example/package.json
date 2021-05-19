@@ -10,9 +10,7 @@
   "main": "index.ts",
   "scripts": {
     "start": "parcel serve --no-source-maps ./index.html",
-    "review": "yarn run review:prettier && yarn run review:elm",
-    "review:elm": "elm-review",
-    "review:prettier": "prettier --check .",
+    "review": "elm-review",
     "build": "parcel build ./index.html --out-dir ./dist/ --no-source-maps",
     "test": "elm-test"
   },
@@ -27,7 +25,6 @@
     "elm-test": "^0.19.1-revision6",
     "node-elm-compiler": "^5.0.6",
     "parcel-bundler": "^1.12.5",
-    "prettier": "^2.3.0",
     "typescript": "^4.2.4"
   },
   "prettier": {
