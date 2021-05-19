@@ -75,7 +75,7 @@ async function whenSuccess(client: Auth0Client): Promise<AuthSuccess> {
 
 async function checkSession(
   client: Auth0Client,
-  loginOnNoSession: boolean,
+  whenNotAuthenticated: 'FORCE_LOGIN' | 'RETURN_ERROR',
 ): Promise<AuthSuccess | 'NO_FEEDBACK'> {
   const searchParams = new URLSearchParams(window.location.search);
   if (isSuccessUrl(searchParams) || isFailureUrl(searchParams)) {
@@ -95,7 +95,7 @@ async function checkSession(
 
   if (isAuthenticated) {
     return whenSuccess(client);
-  } else if (loginOnNoSession) {
+  } else if (whenNotAuthenticated === 'FORCE_LOGIN') {
     login(client);
     return 'NO_FEEDBACK';
   }

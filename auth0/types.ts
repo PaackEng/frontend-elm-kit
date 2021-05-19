@@ -9,7 +9,7 @@ export type AuthPorts = {
 
 export type Config = {
   checkSessionOnStart: boolean;
-  loginOnNoSession: boolean;
+  whenNotAuthenticated: 'FORCE_LOGIN' | 'RETURN_ERROR';
 };
 
 export type AuthError = { error: string; errorDescription: string };
