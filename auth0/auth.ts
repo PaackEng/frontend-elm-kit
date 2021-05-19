@@ -122,7 +122,6 @@ export {
   InvalidError,
   NoSessionError,
   PaackAuthError,
-  checkRedirect,
   checkSession,
   getAuth0Client,
   login,

@@ -32,5 +32,5 @@ export function connectAppToAuth(
   app.ports.login.subscribe(async () => auth.login(await authClient));
   app.ports.checkSession.subscribe(callback(auth.checkSession));
 
-  if (autoLogin) callback(auth.checkSession)();
+  if (authAutoLogin) callback(auth.checkSession)();
 }
