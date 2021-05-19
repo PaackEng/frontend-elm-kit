@@ -31,9 +31,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Install/Update dependencies
+      - name: Install root dependencies
         run: yarn install
-        working-directory: ${{env.example-dir}}
 
       - name: Lint TS code
         run: yarn run eslint
@@ -43,6 +42,10 @@ jobs:
 
       - name: Type-check TS
         run: yarn run tsc
+
+      - name: Install example dependencies
+        run: yarn install
+        working-directory: ${{env.example-dir}}
 
       - name: Review Elm code
         run: yarn run review
