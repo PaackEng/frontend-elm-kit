@@ -55,7 +55,7 @@ hardcodedUUIDsApplier :
     -> ( Fifo UUID, Result String (List msg) )
 hardcodedUUIDsApplier effect ( leftUUIDs, accu ) =
     case ( accu, Fifo.remove leftUUIDs, effect ) of
-        ( Ok goodAccu, ( Just hardcodedUUID, tail ), CommonEffect (Common.UUIDGenerator callback) ) ->
+        ( Ok goodAccu, ( Just hardcodedUUID, tail ), CommonEffect (Common.UUIDGenerator _) ) ->
             ( tail, Ok <| callback hardcodedUUID :: goodAccu )
 
         ( Ok _, ( Nothing, _ ), CommonEffect (Common.UUIDGenerator callback) ) ->
