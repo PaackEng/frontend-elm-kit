@@ -1,4 +1,4 @@
-module Paack.Rollbar.Graphql exposing (responseErrorToRollbar)
+module Paack.Rollbar.Graphql exposing (fromGraphqlError)
 
 {-| Composes the error effect
 -}
@@ -12,22 +12,22 @@ import Paack.Rollbar as Rollbar exposing (RollbarPayload(..))
 import Remote.Errors as RemoteErrors exposing (GraphqlHttpError)
 
 
-responseErrorToRollbar : String -> (error -> RollbarPayload) -> GraphqlHttpError error -> RollbarPayload
-responseErrorToRollbar parent customErrorPayload error =
+fromGraphqlError : String -> (error -> RollbarPayload) -> GraphqlHttpError error -> RollbarPayload
+fromGraphqlError parent customErrorPayload error =
     Rollbar.prependDescription parent <|
         case error of
             RemoteErrors.Custom customError ->
                 customErrorPayload customError
 
             RemoteErrors.Transport transportError ->
-                graphqlHttpErrorToRollbar transportError
+                fromGraphqlRawError transportError
 
 
-graphqlHttpErrorToRollbar : GraphqlHttp.RawError () GraphqlHttp.HttpError -> RollbarPayload
-graphqlHttpErrorToRollbar error =
+fromGraphqlRawError : GraphqlHttp.RawError () GraphqlHttp.HttpError -> RollbarPayload
+fromGraphqlRawError error =
     case error of
         GraphqlHttp.HttpError httpError ->
-            httpErrorToRollbar httpError
+            fromGraphqlHttpError httpError
 
         GraphqlHttp.GraphqlError _ gqlErrors ->
             RollError
@@ -56,8 +56,8 @@ graphqlErrorEncode { details, message, locations } =
         ]
 
 
-httpErrorToRollbar : GraphqlHttp.HttpError -> RollbarPayload
-httpErrorToRollbar httpError =
+fromGraphqlHttpError : GraphqlHttp.HttpError -> RollbarPayload
+fromGraphqlHttpError httpError =
     case httpError of
         GraphqlHttp.BadUrl url ->
             RollError
