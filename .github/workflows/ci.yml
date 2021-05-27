@@ -51,6 +51,10 @@ jobs:
         run: yarn run review
         working-directory: ${{env.example-dir}}
 
+      - name: Build example project
+        run: yarn run build
+        working-directory: ${{env.example-dir}}
+
   test:
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
