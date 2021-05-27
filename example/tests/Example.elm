@@ -33,6 +33,8 @@ mockFlags =
     , randomSeed3 = -1
     , randomSeed4 = -1
     , rollbarToken = ""
+    , mixpanelToken = ""
+    , mixpanelAnonId = Nothing
     }
 
 
