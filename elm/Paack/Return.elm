@@ -2,7 +2,6 @@ module Paack.Return exposing
     ( Return
     , singleton, map, flipMap
     , withEffect, withEffects
-    , withGlobalEffect, withGlobalEffects
     , andThen
     )
 
@@ -75,13 +74,3 @@ withEffect effect_ ( model, effect, globalEffect ) =
 withEffects : List (Effect msg) -> Return msg a -> Return msg a
 withEffects effect_ ( model, effect, globalEffect ) =
     ( model, Effect.batch (effect :: effect_), globalEffect )
-
-
-withGlobalEffect : Effect Global.Msg -> Return msg a -> Return msg a
-withGlobalEffect globalEffect_ ( model, effect, globalEffect ) =
-    ( model, effect, Effect.batch [ globalEffect, globalEffect_ ] )
-
-
-withGlobalEffects : List (Effect Global.Msg) -> Return msg a -> Return msg a
-withGlobalEffects globalEffect_ ( model, effect, globalEffect ) =
-    ( model, effect, Effect.batch (globalEffect :: globalEffect_) )
