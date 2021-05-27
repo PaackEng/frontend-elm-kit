@@ -16,6 +16,8 @@ module Paack.Mixpanel exposing
 
 import Http exposing (Expect)
 import Json.Encode as Encode exposing (Value)
+import Main.Msg exposing (Msg)
+import Paack.Effects as Effects exposing (Effects)
 import Time
 import UUID exposing (Seeds, UUID)
 
@@ -57,34 +59,53 @@ type alias State =
 
 
 init :
-    (UUID -> List effect)
-    ->
-        { token : Maybe String
-        , seeds : Seeds
-        , id : Maybe UUID
-        }
-    -> ( Mixpanel, List effect )
-init toEffect config =
+    { flags : { flags | mixpanelToken : String, mixpanelAnonId : Maybe String }
+    , seeds : Seeds
+    , saveAnonIdEffect : UUID -> Effects msg
+    , identifyEffect : Id -> Client -> Effects msg
+    , session : Maybe { a | email : String }
+    }
+    -> ( Mixpanel, Effects msg )
+init { flags, seeds, saveAnonIdEffect, identifyEffect, session } =
     let
-        ( id, seeds ) =
-            case config.id of
+        previousAnonId =
+            Maybe.andThen (UUID.fromString >> Result.toMaybe) flags.mixpanelAnonId
+
+        token =
+            if String.isEmpty flags.mixpanelToken then
+                Nothing
+
+            else
+                Just flags.mixpanelToken
+
+        ( id, newSeeds ) =
+            case previousAnonId of
                 Just uuid ->
-                    ( uuid, config.seeds )
+                    ( uuid, seeds )
 
                 Nothing ->
-                    UUID.step config.seeds
+                    UUID.step seeds
 
         client =
-            Maybe.map (\token -> Client { token = token }) config.token
+            Mixpanel
+                { queue = []
+                , client = Maybe.map (\t -> Client { token = t }) token
+                , seeds = newSeeds
+                , id = Anon id
+                }
+
+        effects =
+            saveAnonIdEffect id
     in
-    ( Mixpanel
-        { queue = []
-        , client = client
-        , seeds = seeds
-        , id = Anon id
-        }
-    , toEffect id
-    )
+    case session of
+        Just { email } ->
+            identify identifyEffect
+                email
+                client
+                |> (\( c, effect ) -> ( c, Effects.batch [ effect, effects ] ))
+
+        Nothing ->
+            ( client, effects )
 
 
 reset :
