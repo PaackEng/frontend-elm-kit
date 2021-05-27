@@ -20,57 +20,50 @@ module Paack.Return exposing
 @docs withEffect, withEffects
 
 
-# GlobalEffect-related
-
-@docs withGlobalEffect, withGlobalEffects
-
-
 # Combine
 
 @docs andThen
 
 -}
 
-import Global.Effect as Effect exposing (Effect)
-import Global.Msg as Global
+import Paack.Effects as Effects exposing (Effects)
 
 
 type alias Return msg model =
-    ( model, Effect msg, Effect Global.Msg )
+    ( model, Effects msg )
 
 
 map : (a -> b) -> Return msg a -> Return msg b
-map f ( model, effect, globalEffect ) =
-    ( f model, effect, globalEffect )
+map f ( model, effect ) =
+    ( f model, effect )
 
 
 flipMap : (a -> b -> c) -> b -> Return msg a -> Return msg c
-flipMap f oldModel ( subModel, effect, globalEffect ) =
-    ( f subModel oldModel, effect, globalEffect )
+flipMap f oldModel ( subModel, effect ) =
+    ( f subModel oldModel, effect )
 
 
 andThen : (a -> Return msg b) -> Return msg a -> Return msg b
-andThen f ( model, effect, globalEffect ) =
+andThen f ( model, effect ) =
     let
-        ( model_, effect_, globalEffect_ ) =
+        ( model_, effect_ ) =
             f model
     in
     ( model_
-    , Effect.batch [ effect, effect_ ]
-    , Effect.batch [ globalEffect, globalEffect_ ]
+    , Effects.batch [ effect, effect_ ]
     )
 
 
 singleton : model -> Return msg model
 singleton a =
-    ( a, Effect.none, Effect.none )
+    ( a, Effects.none )
 
 
-withEffect : Effect msg -> Return msg a -> Return msg a
-withEffect effect_ ( model, effect, globalEffect ) =
-    ( model, Effect.batch [ effect, effect_ ], globalEffect )
+withEffect : Effects msg -> Return msg a -> Return msg a
+withEffect effect_ ( model, effect ) =
+    ( model, Effects.batch [ effect, effect_ ] )
 
 
-withEffects : List (Effect msg) -> Return msg a -> Return msg a
-withEffects effect_ ( model, effect, globalEffect ) =
-    ( model, Effect.batch (effect :: effect_), globalEffect )
+withEffects : List (Effects msg) -> Return msg a -> Return msg a
+withEffects effect_ ( model, effect ) =
+    ( model, Effects.batch (effect :: effect_) )
