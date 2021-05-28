@@ -109,9 +109,9 @@ init { flags, seeds, saveAnonIdEffect, identifyEffect, session } =
 
 
 reset :
-    (UUID -> List effect)
+    (UUID -> Effects msg)
     -> Mixpanel
-    -> ( Mixpanel, List effect )
+    -> ( Mixpanel, Effects msg )
 reset toEffect (Mixpanel state) =
     let
         ( id, seeds ) =
@@ -133,9 +133,9 @@ enqueue event (Mixpanel ({ queue } as state)) =
 
 
 dispatch :
-    (List Event -> Client -> List effect)
+    (List Event -> Client -> Effects msg)
     -> Mixpanel
-    -> ( Mixpanel, List effect )
+    -> ( Mixpanel, Effects msg )
 dispatch toEffects (Mixpanel state) =
     if List.length state.queue /= 0 then
         ( Mixpanel { state | queue = [] }
@@ -200,10 +200,10 @@ encodeEvent client { id, name, properties } =
 
 
 identify :
-    (Id -> Client -> List effect)
+    (Id -> Client -> Effects msg)
     -> String
     -> Mixpanel
-    -> ( Mixpanel, List effect )
+    -> ( Mixpanel, Effects msg )
 identify toEffects email (Mixpanel state) =
     let
         userData =
