@@ -3,6 +3,7 @@ module Paack.Return exposing
     , singleton, map, flipMap
     , withEffect, withEffects
     , andThen
+    , mapEffect
     )
 
 {-|
@@ -59,11 +60,16 @@ singleton a =
     ( a, Effects.none )
 
 
+mapEffect : (Effects a -> Effects b) -> Return a model -> Return b model
+mapEffect applier ( model, effect ) =
+    ( model, applier effect )
+
+
 withEffect : Effects msg -> Return msg a -> Return msg a
-withEffect effect_ ( model, effect ) =
-    ( model, Effects.batch [ effect, effect_ ] )
+withEffect effect =
+    mapEffect (always effect)
 
 
 withEffects : List (Effects msg) -> Return msg a -> Return msg a
-withEffects effect_ ( model, effect ) =
-    ( model, Effects.batch (effect :: effect_) )
+withEffects effects ( model, effect ) =
+    ( model, Effects.batch (effect :: effects) )
