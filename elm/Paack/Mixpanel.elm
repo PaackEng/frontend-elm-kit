@@ -16,7 +16,6 @@ module Paack.Mixpanel exposing
 
 import Http exposing (Expect)
 import Json.Encode as Encode exposing (Value)
-import Main.Msg exposing (Msg)
 import Paack.Effects as Effects exposing (Effects)
 import Time
 import UUID exposing (Seeds, UUID)

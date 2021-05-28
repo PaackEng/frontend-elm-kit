@@ -4,7 +4,7 @@ import Effects.Local exposing (LocalEffect(..))
 import Main.Model exposing (Model, authConfig)
 import Main.Msg exposing (Msg(..))
 import Paack.Auth.Main as Auth
-import Paack.Effects as Effects exposing (Effects, fromLocal)
+import Paack.Effects as Effects
 import Paack.Return as R exposing (Return)
 
 
@@ -34,4 +34,4 @@ forAuth subMsg model =
                 model.auth
     in
     R.singleton { model | auth = subModel, user = Auth.getUser subModel }
-        |> R.withEffect (fromLocal <| AuthEffect effects)
+        |> R.withEffect (Effects.fromLocal <| AuthEffect effects)
