@@ -3,7 +3,7 @@ import { RemoteConfig, Type, Value } from './types';
 export async function getConfigValue(
   remoteConfig: RemoteConfig,
   key: string,
-  type: Type
+  type: Type,
 ): Promise<Value> {
   const remoteValue = remoteConfig.getValue(key);
 
