@@ -8,7 +8,7 @@
     "elm",
     "prettier",
     "auth0",
-    "remoteConfig",
+    "firebase",
     "eslintconfig.json",
     "tsconfig.json"
   ],
