@@ -27,4 +27,3 @@ async function sendConfigs(elmApp, firebaseAppConfig) {
   });
 }
 ```
-
