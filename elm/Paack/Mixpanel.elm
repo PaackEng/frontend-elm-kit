@@ -151,7 +151,10 @@ dispatch toEffects (Mixpanel state) =
 
 performDispatch : Expect msg -> List Event -> Client -> Cmd msg
 performDispatch expect events client =
-    if events /= [] then
+    if List.isEmpty events then
+        Cmd.none
+
+    else
         Http.post
             { url = "https://api.mixpanel.com/track#past-events-batch"
             , body =
@@ -162,9 +165,6 @@ performDispatch expect events client =
                     |> Http.stringBody contentType
             , expect = expect
             }
-
-    else
-        Cmd.none
 
 
 clientToProperty : Client -> ( String, Value )
