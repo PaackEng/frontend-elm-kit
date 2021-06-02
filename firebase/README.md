@@ -10,7 +10,7 @@ Example usage:
 
 ```ts
 import firebase from 'firebase/app';
-import { getConfigValue } from '@PaackEng/frontend-elm-kit/firebase/remoteConfig'
+import { getConfigValue } from '@PaackEng/frontend-elm-kit/firebase/remoteConfig';
 
 async function sendConfigs(elmApp, firebaseAppConfig) {
   const firebaseApp = firebase.initializeApp(firebaseAppConfig);
@@ -19,11 +19,15 @@ async function sendConfigs(elmApp, firebaseAppConfig) {
   await remoteConfig.fetchAndActivate();
 
   // read "exampleConfig" parameter as a json object
-  const exampleConfig = await getConfigValue(remoteConfig, "exampleConfig", "object");
+  const exampleConfig = await getConfigValue(
+    remoteConfig,
+    'exampleConfig',
+    'object',
+  );
 
   elmApp.ports.fromHostToElm.send({
     tag: 'RemoteConfig',
-    data: { exampleConfig }
+    data: { exampleConfig },
   });
 }
 ```
