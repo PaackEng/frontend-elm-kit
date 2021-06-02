@@ -4,28 +4,27 @@ import Effects.Local exposing (LocalEffect(..))
 import Main.Model exposing (Model, authConfig)
 import Main.Msg exposing (Msg(..))
 import Paack.Auth.Main as Auth
-import Paack.Effects as Effects exposing (Effects, fromLocal)
+import Paack.Effects as Effects
+import Paack.Return as R exposing (Return)
 
 
-update : Msg -> Model -> ( Model, Effects Msg )
+update : Msg -> Model -> Return Msg Model
 update msg model =
     case msg of
         ForAuth subMsg ->
             forAuth subMsg model
 
         LinkClicked _ ->
-            ( model, Effects.none )
+            R.singleton model
 
         RollbarFeedback _ ->
-            ( model, Effects.none )
+            R.singleton model
 
         UrlChanged newUrl ->
-            ( { model | url = newUrl }
-            , Effects.none
-            )
+            R.singleton { model | url = newUrl }
 
 
-forAuth : Auth.Msg -> Model -> ( Model, Effects Msg )
+forAuth : Auth.Msg -> Model -> Return Msg Model
 forAuth subMsg model =
     let
         ( subModel, effects ) =
@@ -33,10 +32,6 @@ forAuth subMsg model =
                 authConfig
                 subMsg
                 model.auth
-
-        mappedEffects =
-            fromLocal <| AuthEffect effects
     in
-    ( { model | auth = subModel, user = Auth.getUser subModel }
-    , mappedEffects
-    )
+    R.singleton { model | auth = subModel, user = Auth.getUser subModel }
+        |> R.withEffect (Effects.fromLocal <| AuthEffect effects)

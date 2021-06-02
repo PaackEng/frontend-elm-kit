@@ -52,6 +52,10 @@ In order to integrate this package into your project there are some extra change
 - Make sure your model includes `appConfig.environment`. `codeVersion`, `rollbarToken` and `url`;
 - You'll need a message for receiving feedback, see [how the example performs the effect](https://github.com/PaackEng/frontend-elm-kit/blob/main/example/src/Effects/LocalPerformer.elm);
 
+### Mixpanel
+
+- Provide the two flags `mixpanelToken` and `mixpanelAnonId` which should be saved to the localStorage;
+
 ### Extending configuration
 
 This package provides default configuration for Eslint, Prettier and TypeScript. Here's how to extend the config:
