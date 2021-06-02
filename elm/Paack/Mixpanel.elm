@@ -16,7 +16,6 @@ module Paack.Mixpanel exposing
 
 import Http exposing (Expect)
 import Json.Encode as Encode exposing (Value)
-import Paack.Effects as Effects exposing (Effects)
 import Time
 import UUID exposing (Seeds, UUID)
 
@@ -60,11 +59,11 @@ type alias State =
 init :
     { flags : { flags | mixpanelToken : String, mixpanelAnonId : Maybe String }
     , seeds : Seeds
-    , saveAnonIdEffect : UUID -> Effects msg
-    , identifyEffect : Id -> Client -> Effects msg
+    , saveAnonIdEffect : UUID -> List effect
+    , identifyEffect : Id -> Client -> List effect
     , session : Maybe { a | email : String }
     }
-    -> ( Mixpanel, Effects msg )
+    -> ( Mixpanel, List effect )
 init { flags, seeds, saveAnonIdEffect, identifyEffect, session } =
     let
         previousAnonId =
@@ -101,16 +100,16 @@ init { flags, seeds, saveAnonIdEffect, identifyEffect, session } =
             identify identifyEffect
                 email
                 client
-                |> (\( c, effect ) -> ( c, Effects.batch [ effect, effects ] ))
+                |> (\( c, effect ) -> ( c, effect ++ effects ))
 
         Nothing ->
             ( client, effects )
 
 
 reset :
-    (UUID -> Effects msg)
+    (UUID -> List effect)
     -> Mixpanel
-    -> ( Mixpanel, Effects msg )
+    -> ( Mixpanel, List effect )
 reset toEffect (Mixpanel state) =
     let
         ( id, seeds ) =
@@ -132,9 +131,9 @@ enqueue event (Mixpanel ({ queue } as state)) =
 
 
 dispatch :
-    (List Event -> Client -> Effects msg)
+    (List Event -> Client -> List effect)
     -> Mixpanel
-    -> ( Mixpanel, Effects msg )
+    -> ( Mixpanel, List effect )
 dispatch toEffects (Mixpanel state) =
     if List.length state.queue /= 0 then
         ( Mixpanel { state | queue = [] }
@@ -199,10 +198,10 @@ encodeEvent client { id, name, properties } =
 
 
 identify :
-    (Id -> Client -> Effects msg)
+    (Id -> Client -> List effect)
     -> String
     -> Mixpanel
-    -> ( Mixpanel, Effects msg )
+    -> ( Mixpanel, List effect )
 identify toEffects email (Mixpanel state) =
     let
         userData =
