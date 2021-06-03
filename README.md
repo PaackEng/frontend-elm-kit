@@ -47,6 +47,11 @@ In order to integrate this package into your project there are some extra change
 - Install the [Auth0 SPA SDK](https://github.com/auth0/auth0-spa-js)
 - If your application isn't using `Effect` yet you can use `Auth.performEffects` to convert them on the fly. Otherwise, it's recommended to use `Effects.MainHelper`
 
+### Firebase
+
+- Install the [Firebase JavaScript SDK](https://firebase.google.com/docs/web/setup)
+- Initialize firebase with your Firebase project configuration
+
 ### Rollbar
 
 - Make sure your model includes `appConfig.environment`. `codeVersion`, `rollbarToken` and `url`;
