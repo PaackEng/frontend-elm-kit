@@ -1,20 +1,22 @@
 module Paack.Mixpanel exposing
     ( Client
     , Event
-    , Id
+    , Id(..)
     , Mixpanel
     , Property
+    , contentType
+    , createIdentityUrl
     , dispatch
     , dispatchInterval
+    , encodeEvent
+    , encodeIdentification
     , enqueue
+    , eventsBatchUrl
     , identify
     , init
-    , performDispatch
-    , performIdentify
     , reset
     )
 
-import Http exposing (Expect)
 import Json.Encode as Encode exposing (Value)
 import Time
 import UUID exposing (Seeds, UUID)
@@ -149,22 +151,9 @@ dispatch toEffects (Mixpanel state) =
         ( Mixpanel state, [] )
 
 
-performDispatch : Expect msg -> List Event -> Client -> Cmd msg
-performDispatch expect events client =
-    if List.isEmpty events then
-        Cmd.none
-
-    else
-        Http.post
-            { url = "https://api.mixpanel.com/track#past-events-batch"
-            , body =
-                events
-                    |> Encode.list (encodeEvent client)
-                    |> Encode.encode 0
-                    |> (++) "data="
-                    |> Http.stringBody contentType
-            , expect = expect
-            }
+eventsBatchUrl : String
+eventsBatchUrl =
+    "https://api.mixpanel.com/track#past-events-batch"
 
 
 clientToProperty : Client -> ( String, Value )
@@ -220,23 +209,9 @@ identify toEffects email (Mixpanel state) =
     )
 
 
-performIdentify : Expect msg -> Id -> Client -> Cmd msg
-performIdentify expect id client =
-    case id of
-        Anon _ ->
-            Cmd.none
-
-        Identified anonId identification ->
-            Http.post
-                { url = "https://api.mixpanel.com/track#create-identity"
-                , body =
-                    identification
-                        |> encodeIdentification client anonId
-                        |> Encode.encode 0
-                        |> (++) "data="
-                        |> Http.stringBody contentType
-                , expect = expect
-                }
+createIdentityUrl : String
+createIdentityUrl =
+    "https://api.mixpanel.com/track#past-events-batch"
 
 
 encodeIdentification : Client -> UUID -> Identification -> Value
