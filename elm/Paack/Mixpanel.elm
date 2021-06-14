@@ -211,7 +211,7 @@ identify toEffects email (Mixpanel state) =
 
 createIdentityUrl : String
 createIdentityUrl =
-    "https://api.mixpanel.com/track#past-events-batch"
+    "https://api.mixpanel.com/track#create-identity"
 
 
 encodeIdentification : Client -> UUID -> Identification -> Value
