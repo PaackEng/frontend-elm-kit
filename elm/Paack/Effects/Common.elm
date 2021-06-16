@@ -1,7 +1,7 @@
 module Paack.Effects.Common exposing
     ( CommonEffect(..), mapCommonEffect
     , cmd, loopMsg
-    , pushUrl, replaceUrl, timeHere, domGetElement, domSetViewportOf
+    , pushUrl, replaceUrl, timeHere, domGetElement, domSetViewportOf, domFocus
     , uuidGenerator, httpRequest
     , GraphqlRequestEffect, HttpRequestEffect, graphqlQuery, graphqlMutation
     )
@@ -17,7 +17,7 @@ module Paack.Effects.Common exposing
 # Common Effectss
 
 @docs cmd, loopMsg
-@docs pushUrl, replaceUrl, timeHere, domGetElement, domSetViewportOf
+@docs pushUrl, replaceUrl, timeHere, domGetElement, domSetViewportOf, domFocus
 @docs uuidGenerator, httpRequest
 @docs GraphqlRequestEffect, HttpRequestEffect, graphqlQuery, graphqlMutation
 
@@ -44,6 +44,7 @@ type CommonEffect msg
     | UUIDGenerator (UUID -> msg)
     | DomGetElement (Result Dom.Error Dom.Element -> msg) String
     | DomSetViewportOf (Result Dom.Error () -> msg) String Float Float
+    | DomFocus (Result Dom.Error () -> msg) String
     | HttpRequest (HttpRequestEffect msg)
     | GraphqlHttpQuery (GraphqlRequestEffect RootQuery msg)
     | GraphqlHttpMutation (GraphqlRequestEffect RootMutation msg)
@@ -94,6 +95,9 @@ mapCommonEffect fn effect =
 
         DomSetViewportOf toMsg parent x y ->
             DomSetViewportOf (toMsg >> fn) parent x y
+
+        DomFocus toMsg idAttribute ->
+            DomFocus (toMsg >> fn) idAttribute
 
         HttpRequest data ->
             HttpRequest
@@ -162,6 +166,9 @@ domGetElement : (Result Dom.Error Dom.Element -> msg) -> String -> CommonEffect 
 domGetElement =
     DomGetElement
 
+domFocus : (Result Dom.Error () -> msg) -> String -> CommonEffect msg
+domFocus =
+    DomFocus
 
 httpRequest :
     { method : String

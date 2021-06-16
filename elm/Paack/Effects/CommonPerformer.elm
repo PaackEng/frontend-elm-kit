@@ -52,6 +52,11 @@ effectPerform key seeds effect =
             , Task.attempt toMsg <| Dom.setViewportOf parent x y
             )
 
+        DomFocus toMsg idAttribute ->
+            ( seeds
+            , Task.attempt toMsg <| Dom.focus idAttribute
+            )
+
         HttpRequest data ->
             ( seeds
             , httpRequest data
