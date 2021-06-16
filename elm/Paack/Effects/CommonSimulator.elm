@@ -40,6 +40,9 @@ effectPerform index effect =
         DomSetViewportOf _ _ _ _ ->
             SimulatedCmd.none
 
+        DomFocus _ _ ->
+            SimulatedCmd.none
+
         HttpRequest data ->
             httpRequest index data
 

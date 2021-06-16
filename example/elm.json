@@ -10,7 +10,7 @@
             "NoRedInk/elm-json-decode-pipeline": "1.0.0",
             "NoRedInk/elm-rollbar": "2.0.1",
             "PaackEng/paack-remotedata": "1.1.0",
-            "PaackEng/paack-ui": "3.2.0",
+            "PaackEng/paack-ui": "4.0.0",
             "TSFoster/elm-uuid": "4.1.0",
             "avh4/elm-fifo": "1.0.4",
             "dillonkearns/elm-graphql": "5.0.5",
@@ -25,6 +25,7 @@
             "rtfeldman/elm-iso8601-date-strings": "1.1.3"
         },
         "indirect": {
+            "PaackEng/elm-ui-dropdown": "3.1.1",
             "TSFoster/elm-bytes-extra": "1.3.0",
             "TSFoster/elm-md5": "2.0.0",
             "TSFoster/elm-sha1": "2.1.1",
