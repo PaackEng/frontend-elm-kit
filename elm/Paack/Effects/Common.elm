@@ -166,9 +166,11 @@ domGetElement : (Result Dom.Error Dom.Element -> msg) -> String -> CommonEffect 
 domGetElement =
     DomGetElement
 
+
 domFocus : (Result Dom.Error () -> msg) -> String -> CommonEffect msg
 domFocus =
     DomFocus
+
 
 httpRequest :
     { method : String

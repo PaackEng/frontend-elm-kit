@@ -141,6 +141,7 @@ domGetElement : (Result Dom.Error Dom.Element -> msg) -> String -> Effects msg
 domGetElement toMsg idAttribute =
     Common.domGetElement toMsg idAttribute |> fromCommon
 
+
 domFocus : (Result Dom.Error Dom.Element -> msg) -> String -> Effects msg
 domFocus toMsg idAttribute =
     Common.domFocus toMsg idAttribute |> fromCommon
