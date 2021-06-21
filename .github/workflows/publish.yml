@@ -39,9 +39,9 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     # Setup permissions for the GITHUB_TOKEN created for this workflow
-    permissions: 
+    permissions:
       contents: read
-      packages: write 
+      packages: write
     steps:
       - uses: actions/checkout@v2
 
@@ -51,7 +51,7 @@ jobs:
           node-version: '14.x'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@PaackEng'
-          
+
       - run: npm install
 
       - run: npm publish
