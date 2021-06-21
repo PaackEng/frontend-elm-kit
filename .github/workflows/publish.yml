@@ -1,23 +1,59 @@
-name: Publish node package to GitHub Packages registry
+name: Publish Package
 on:
-  release:
-    types: [created]
+  push:
+    tags:
+      - 'v*'
+
 jobs:
   build:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    env:
+      working-directory: ./example
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+        working-directory: ${{env.working-directory}}
+
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install/Update dependencies
+        run: yarn install
+        working-directory: ${{env.working-directory}}
+
+      - name: Review code
+        run: yarn run build
+        working-directory: ${{env.working-directory}}
+
+  publish:
+    runs-on: ubuntu-latest
+    # Setup permissions for the GITHUB_TOKEN created for this workflow
     permissions: 
       contents: read
       packages: write 
     steps:
       - uses: actions/checkout@v2
+
       # Setup .npmrc file to publish to GitHub Packages
       - uses: actions/setup-node@v2
         with:
-          node-version: '12.x'
+          node-version: '14.x'
           registry-url: 'https://npm.pkg.github.com'
-          # Defaults to the user or organization that owns the workflow file
           scope: '@PaackEng'
+          
       - run: npm install
+
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
