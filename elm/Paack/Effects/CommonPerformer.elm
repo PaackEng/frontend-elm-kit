@@ -2,10 +2,10 @@ module Paack.Effects.CommonPerformer exposing (effectPerform)
 
 import Browser.Dom as Dom
 import Browser.Navigation as Nav
-import Paack.Effects.Common exposing (CommonEffect(..), GraphqlRequestEffect, HttpRequestEffect)
 import Graphql.Http as Graphql
 import Graphql.Operation exposing (RootMutation, RootQuery)
 import Http as ElmHttp
+import Paack.Effects.Common exposing (CommonEffect(..), GraphqlRequestEffect, HttpRequestEffect)
 import Task
 import Time
 import UUID exposing (Seeds, UUID)
@@ -50,6 +50,11 @@ effectPerform key seeds effect =
         DomSetViewportOf toMsg parent x y ->
             ( seeds
             , Task.attempt toMsg <| Dom.setViewportOf parent x y
+            )
+
+        DomFocus toMsg idAttribute ->
+            ( seeds
+            , Task.attempt toMsg <| Dom.focus idAttribute
             )
 
         HttpRequest data ->
