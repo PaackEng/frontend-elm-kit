@@ -1,4 +1,4 @@
-name: Deploy
+name: Publish Package
 on:
   push:
     tags:
@@ -37,17 +37,23 @@ jobs:
         working-directory: ${{env.working-directory}}
 
   publish:
-    needs: build
     runs-on: ubuntu-latest
-    if: github.event.pull_request.draft == false
-    env:
-      working-directory: ./example
-
+    # Setup permissions for the GITHUB_TOKEN created for this workflow
+    permissions:
+      contents: read
+      packages: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      - name: Publish
-        run: npm publish
+      # Setup .npmrc file to publish to GitHub Packages
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@PaackEng'
+
+      - run: npm install
+
+      - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
