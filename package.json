@@ -40,6 +40,7 @@
   },
   "peerDependencies": {
     "@auth0/auth0-spa-js": "^1.17.0",
+    "elm": "^0.19.1-5",
     "elm-review": "^2.5.5",
     "elm-test": "^0.19.1-revision7",
     "firebase": "^8.6.3"

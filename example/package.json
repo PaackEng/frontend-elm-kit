@@ -13,6 +13,7 @@
   "dependencies": {},
   "devDependencies": {
     "@PaackEng/frontend-elm-kit": "file:..",
+    "elm": "^0.19.1-5",
     "elm-review": "^2.5.5",
     "elm-test": "^0.19.1-revision7"
   },
