@@ -12,7 +12,7 @@ require('esbuild')
     allowOverwrite: true,
     bundle: true,
     metafile: true,
-    plugins: [EnvFilePlugin, ElmPlugin({ pathToElm: "elm-optimize-level-2" })],
+    plugins: [EnvFilePlugin, ElmPlugin({ pathToElm: 'paack-elm-wrapper' })],
   })
   .then((result) => {
     const htmlPath = 'dist/index.html';

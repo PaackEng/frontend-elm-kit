@@ -2,12 +2,6 @@
   "name": "frontend-elm-kit-example",
   "version": "1.0.0-t0",
   "description": "",
-  "files": [
-    "elm",
-    "auth0",
-    "!**/elm-stuff"
-  ],
-  "main": "index.ts",
   "scripts": {
     "build": "paack-elm-build",
     "review": "elm-review",
