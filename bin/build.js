@@ -12,6 +12,7 @@ require('esbuild')
     allowOverwrite: true,
     bundle: true,
     metafile: true,
+    minify: true,
     plugins: [EnvFilePlugin, ElmPlugin({ pathToElm: 'paack-elm-wrapper' })],
   })
   .then((result) => {
@@ -26,7 +27,7 @@ require('esbuild')
 
       fs.writeFile(
         htmlPath,
-        data.replace('[OUTPUT_PATH]', path),
+        data.replace('index.js', path),
         'utf8',
         console.log,
       );

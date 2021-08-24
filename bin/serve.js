@@ -3,4 +3,15 @@ const path = require('path');
 const ElmPlugin = require('esbuild-plugin-elm');
 const EnvFilePlugin = require('esbuild-envfile-plugin');
 
-require('esbuild').serve({ servedir: 'dist', port: 1234 }, {});
+require('esbuild').serve(
+  {
+    servedir: 'web',
+    port: 1234,
+  },
+  {
+    entryPoints: ['web/ts/index.ts'],
+    outdir: 'web',
+    bundle: true,
+    plugins: [EnvFilePlugin, ElmPlugin({ debug: true })],
+  },
+);
