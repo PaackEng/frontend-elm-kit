@@ -16,7 +16,10 @@
   "author": "",
   "license": "UNLICENSED",
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "elm-review": "^2.5.5",
+    "elm-test": "^0.19.1-revision7"
+  },
   "prettier": {
     "singleQuote": true,
     "trailingComma": "all"

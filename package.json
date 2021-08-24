@@ -32,10 +32,16 @@
     "url": "https://github.com/PaackEng/frontend-elm-kit/issues"
   },
   "homepage": "https://github.com/PaackEng/frontend-elm-kit#readme",
-  "dependencies": {},
+  "dependencies": {
+    "elm-optimize-level-2": "^0.1.5",
+    "esbuild": "^0.12.22",
+    "esbuild-envfile-plugin": "^1.0.1",
+    "esbuild-plugin-elm": "^0.0.4"
+  },
   "peerDependencies": {
     "@auth0/auth0-spa-js": "^1.17.0",
-    "elm": "^0.19.1-5",
+    "elm-review": "^2.5.5",
+    "elm-test": "^0.19.1-revision7",
     "firebase": "^8.6.3"
   },
   "devDependencies": {
