@@ -11,6 +11,7 @@
   "scripts": {
     "build": "paack-elm-build",
     "review": "elm-review",
+    "start": "paack-elm-serve",
     "test": "elm-test"
   },
   "author": "",

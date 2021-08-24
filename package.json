@@ -55,7 +55,8 @@
     "typescript": "^4.3.5"
   },
   "bin": {
-    "paack-elm-build": "bin/build.js"
+    "paack-elm-build": "bin/build.js",
+    "paack-elm-serve": "bin/serve.js"
   },
   "engines": {
     "node": ">=0.14"
