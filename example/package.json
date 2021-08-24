@@ -9,7 +9,7 @@
   ],
   "main": "index.ts",
   "scripts": {
-    "build": "npx --no-install --package '@PaackEng/frontend-elm-kit' paack-elm-build",
+    "build": "paack-elm-build",
     "review": "elm-review",
     "test": "elm-test"
   },
@@ -17,14 +17,12 @@
   "license": "UNLICENSED",
   "dependencies": {},
   "devDependencies": {
+    "@PaackEng/frontend-elm-kit": "file:..",
     "elm-review": "^2.5.5",
     "elm-test": "^0.19.1-revision7"
   },
   "prettier": {
     "singleQuote": true,
     "trailingComma": "all"
-  },
-  "alias": {
-    "@PaackEng/frontend-elm-kit": ".."
   }
 }

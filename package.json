@@ -10,7 +10,8 @@
     "auth0",
     "firebase",
     "eslintconfig.json",
-    "tsconfig.json"
+    "tsconfig.json",
+    "bin/builds.js"
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
@@ -35,7 +36,7 @@
   "dependencies": {
     "elm-optimize-level-2": "^0.1.5",
     "esbuild": "^0.12.22",
-    "esbuild-envfile-plugin": "^1.0.1",
+    "esbuild-envfile-plugin": "https://github.com/renanpvaz/esbuild-envfile-plugin",
     "esbuild-plugin-elm": "^0.0.4"
   },
   "peerDependencies": {
@@ -55,6 +56,9 @@
   },
   "bin": {
     "paack-elm-build": "bin/build.js"
+  },
+  "engines": {
+    "node": ">=0.14"
   },
   "prettier": {
     "singleQuote": true,

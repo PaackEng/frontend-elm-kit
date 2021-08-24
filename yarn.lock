@@ -428,10 +428,9 @@ es-cookie@^1.3.2:
   resolved "https://registry.yarnpkg.com/es-cookie/-/es-cookie-1.3.2.tgz#80e831597f72a25721701bdcb21d990319acd831"
   integrity sha512-UTlYYhXGLOy05P/vKVT2Ui7WtC7NiRzGtJyAKKn32g5Gvcjn7KAClLPWlipCtxIus934dFg9o9jXiBL0nP+t9Q==
 
-esbuild-envfile-plugin@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/esbuild-envfile-plugin/-/esbuild-envfile-plugin-1.0.1.tgz#e822dc5819d983083c24324b73510745040a7a73"
-  integrity sha512-azfmAYYcywJ9GAcT13yyPA8kI2ETc1szPcU7wLRYZwfJv15qljWgd0A50InOpX8wa+KP165W8vfRpqDPza3MrQ==
+"esbuild-envfile-plugin@https://github.com/renanpvaz/esbuild-envfile-plugin":
+  version "1.0.0"
+  resolved "https://github.com/renanpvaz/esbuild-envfile-plugin#7a4e2284cc118fe83ecc35eae7f770c0537c799f"
   dependencies:
     dotenv "8.2.0"
 
