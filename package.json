@@ -19,6 +19,7 @@
     "lint": "yarn run eslint && yarn run prettier",
     "eslint": "eslint auth0/**/*.ts --config eslintconfig.json",
     "prettier": "prettier --check .",
+    "prettify": "prettier --write .",
     "tsc": "tsc --noEmit -p . --pretty"
   },
   "repository": {
@@ -31,20 +32,23 @@
     "url": "https://github.com/PaackEng/frontend-elm-kit/issues"
   },
   "homepage": "https://github.com/PaackEng/frontend-elm-kit#readme",
-  "dependencies": {
-    "@auth0/auth0-spa-js": "^1.15.0",
-    "@types/elm": "^0.19.0"
-  },
+  "dependencies": {},
   "peerDependencies": {
+    "@auth0/auth0-spa-js": "^1.17.0",
     "elm": "^0.19.1-5",
     "firebase": "^8.6.3"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.24.0",
-    "@typescript-eslint/parser": "^4.24.0",
-    "eslint": "^7.26.0",
-    "prettier": "^2.3.0",
-    "typescript": "^4.2.4"
+    "@auth0/auth0-spa-js": "^1.17.0",
+    "@types/elm": "^0.19.0",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "eslint": "^7.32.0",
+    "prettier": "^2.3.2",
+    "typescript": "^4.3.5"
+  },
+  "bin": {
+    "paack-elm-build": "bin/build.js"
   },
   "prettier": {
     "singleQuote": true,
