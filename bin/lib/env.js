@@ -12,7 +12,7 @@ let plugin = {
     process.env.GIT_DESCRIBE = stdout.toString().split('\n', 1)[0];
 
     _.each(process.env, (value, key) => {
-      options.define[`process.env.${key}`] = `"${escape(value)}"`;
+      options.define[`env_${key}`] = `"${escape(value)}"`;
     });
   },
 };

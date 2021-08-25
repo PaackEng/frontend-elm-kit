@@ -7,7 +7,6 @@
   dependencies:
     elm-optimize-level-2 "^0.1.5"
     esbuild "^0.12.22"
-    esbuild-envfile-plugin "https://github.com/renanpvaz/esbuild-envfile-plugin"
     esbuild-plugin-elm "^0.0.4"
 
 "@sindresorhus/is@^2.0.0":
@@ -354,11 +353,6 @@ delayed-stream@~1.0.0:
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
   integrity sha1-3zrhmayt+31ECqrgsp4icrJOxhk=
 
-dotenv@8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
-  integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
-
 duplexer3@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
@@ -448,12 +442,6 @@ end-of-stream@^1.1.0:
   integrity sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==
   dependencies:
     once "^1.4.0"
-
-"esbuild-envfile-plugin@https://github.com/renanpvaz/esbuild-envfile-plugin":
-  version "1.0.0"
-  resolved "https://github.com/renanpvaz/esbuild-envfile-plugin#7a4e2284cc118fe83ecc35eae7f770c0537c799f"
-  dependencies:
-    dotenv "8.2.0"
 
 esbuild-plugin-elm@^0.0.4:
   version "0.0.4"
