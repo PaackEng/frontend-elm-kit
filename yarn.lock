@@ -395,11 +395,6 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-dotenv@8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
-  integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
-
 elm-optimize-level-2@^0.1.5:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/elm-optimize-level-2/-/elm-optimize-level-2-0.1.5.tgz#64006eaeff5f8a38829d5526248c914010b138f8"
@@ -427,12 +422,6 @@ es-cookie@^1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/es-cookie/-/es-cookie-1.3.2.tgz#80e831597f72a25721701bdcb21d990319acd831"
   integrity sha512-UTlYYhXGLOy05P/vKVT2Ui7WtC7NiRzGtJyAKKn32g5Gvcjn7KAClLPWlipCtxIus934dFg9o9jXiBL0nP+t9Q==
-
-"esbuild-envfile-plugin@https://github.com/renanpvaz/esbuild-envfile-plugin":
-  version "1.0.0"
-  resolved "https://github.com/renanpvaz/esbuild-envfile-plugin#7a4e2284cc118fe83ecc35eae7f770c0537c799f"
-  dependencies:
-    dotenv "8.2.0"
 
 esbuild-plugin-elm@^0.0.4:
   version "0.0.4"

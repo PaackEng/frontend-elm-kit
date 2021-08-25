@@ -2,7 +2,7 @@
 const path = require('path');
 const fs = require('fs');
 const ElmPlugin = require('esbuild-plugin-elm');
-const EnvFilePlugin = require('esbuild-envfile-plugin');
+const EnvFilePlugin = require('./lib/env.js');
 
 require('esbuild')
   .build({
@@ -15,6 +15,7 @@ require('esbuild')
     minify: true,
     plugins: [EnvFilePlugin, ElmPlugin({ pathToElm: 'paack-elm-wrapper' })],
   })
+  .catch(() => process.exit(1))
   .then((result) => {
     const htmlPath = 'dist/index.html';
 
