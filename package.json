@@ -1,8 +1,7 @@
 {
   "name": "@PaackEng/frontend-elm-kit",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "",
-  "main": "",
   "private": false,
   "files": [
     "elm",
@@ -10,7 +9,8 @@
     "auth0",
     "firebase",
     "eslintconfig.json",
-    "tsconfig.json"
+    "tsconfig.json",
+    "bin/**"
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
@@ -19,6 +19,7 @@
     "lint": "yarn run eslint && yarn run prettier",
     "eslint": "eslint auth0/**/*.ts --config eslintconfig.json",
     "prettier": "prettier --check .",
+    "prettify": "prettier --write .",
     "tsc": "tsc --noEmit -p . --pretty"
   },
   "repository": {
@@ -32,19 +33,34 @@
   },
   "homepage": "https://github.com/PaackEng/frontend-elm-kit#readme",
   "dependencies": {
-    "@auth0/auth0-spa-js": "^1.15.0",
-    "@types/elm": "^0.19.0"
+    "elm-optimize-level-2": "^0.1.5",
+    "esbuild": "^0.12.22",
+    "esbuild-plugin-elm": "^0.0.4"
   },
   "peerDependencies": {
+    "@auth0/auth0-spa-js": "^1.17.0",
+    "@types/elm": "^0.19.0",
     "elm": "^0.19.1-5",
+    "elm-review": "^2.5.5",
+    "elm-test": "^0.19.1-revision7",
     "firebase": "^8.6.3"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.24.0",
-    "@typescript-eslint/parser": "^4.24.0",
-    "eslint": "^7.26.0",
-    "prettier": "^2.3.0",
-    "typescript": "^4.2.4"
+    "@auth0/auth0-spa-js": "^1.17.0",
+    "@types/elm": "^0.19.0",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "eslint": "^7.32.0",
+    "prettier": "^2.3.2",
+    "typescript": "^4.3.5"
+  },
+  "bin": {
+    "paack-elm-wrapper": "bin/elm-wrapper.sh",
+    "paack-elm-build": "bin/build.js",
+    "paack-elm-serve": "bin/serve.js"
+  },
+  "engines": {
+    "node": ">=0.14"
   },
   "prettier": {
     "singleQuote": true,

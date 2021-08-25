@@ -20,7 +20,7 @@ export function connectAppToAuth(
         config.whenNotAuthenticated,
       );
       if (result !== 'NO_FEEDBACK') app.ports.authResult.send(result);
-    } catch (err: unknown) {
+    } catch (err) {
       if (err instanceof auth.ElmTreatableError)
         app.ports.authResult.send(err.toJSON());
       else throw err;
