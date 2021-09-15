@@ -3,7 +3,7 @@
 
 
 "@PaackEng/frontend-elm-kit@file:..":
-  version "2.1.0"
+  version "2.1.3"
   dependencies:
     elm-optimize-level-2 "^0.1.5"
     esbuild "^0.12.22"
