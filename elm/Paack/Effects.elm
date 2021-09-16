@@ -45,7 +45,7 @@ import Paack.Effects.Common as Common exposing (CommonEffect, mapCommonEffect)
 import Remote.Response exposing (GraphqlHttpResponse)
 import Time
 import UI.Analytics as UI
-import UI.Effect as UI
+import UI.Effects as UI
 import UUID exposing (UUID)
 
 
@@ -184,7 +184,7 @@ graphqlMutation config selection =
     fromCommon <| Common.graphqlMutation config selection
 
 
-paackUI : (UI.Analytics -> Effects msg) -> UI.Effect msg -> Effects msg
+paackUI : (UI.Analytics -> Effects msg) -> UI.Effects msg -> Effects msg
 paackUI applier =
     let
         handler effect =

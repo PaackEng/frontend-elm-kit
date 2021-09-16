@@ -12,6 +12,7 @@
   "license": "UNLICENSED",
   "dependencies": {},
   "devDependencies": {
+    "@auth0/auth0-spa-js": "^1.17.0",
     "@PaackEng/frontend-elm-kit": "file:..",
     "elm": "^0.19.1-5",
     "elm-review": "^2.5.5",
