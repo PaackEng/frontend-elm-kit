@@ -84,7 +84,7 @@ async function checkSession(
     } catch (err) {
       if (err instanceof AuthenticationError) {
         throw new PaackAuthError(err);
-      } else {
+      } else if (err instanceof Error) {
         throw new InvalidError(err);
       }
     }
