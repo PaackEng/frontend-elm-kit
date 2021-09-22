@@ -1,11 +1,12 @@
 import { RemoteConfig, Type, Value } from './types';
+import { getValue } from 'firebase/remote-config';
 
 export async function getConfigValue(
   remoteConfig: RemoteConfig,
   key: string,
   type: Type,
 ): Promise<Value> {
-  const remoteValue = remoteConfig.getValue(key);
+  const remoteValue = getValue(remoteConfig, key);
 
   switch (type) {
     case 'string':
