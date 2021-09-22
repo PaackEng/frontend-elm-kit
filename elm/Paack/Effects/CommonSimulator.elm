@@ -16,9 +16,6 @@ import Time
 effectPerform : Int -> CommonEffect msg -> SimulatedEffect msg
 effectPerform index effect =
     case effect of
-        Command _ ->
-            SimulatedCmd.none
-
         LoopMsg msg ->
             loop msg
 

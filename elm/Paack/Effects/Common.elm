@@ -1,6 +1,6 @@
 module Paack.Effects.Common exposing
     ( CommonEffect(..), mapCommonEffect
-    , cmd, loopMsg
+    , loopMsg
     , pushUrl, replaceUrl, timeHere, domGetElement, domSetViewportOf, domFocus
     , uuidGenerator, httpRequest
     , GraphqlRequestEffect, HttpRequestEffect, graphqlQuery, graphqlMutation
@@ -16,7 +16,7 @@ module Paack.Effects.Common exposing
 
 # Common Effectss
 
-@docs cmd, loopMsg
+@docs loopMsg
 @docs pushUrl, replaceUrl, timeHere, domGetElement, domSetViewportOf, domFocus
 @docs uuidGenerator, httpRequest
 @docs GraphqlRequestEffect, HttpRequestEffect, graphqlQuery, graphqlMutation
@@ -36,8 +36,7 @@ import UUID exposing (UUID, decoder)
 
 
 type CommonEffect msg
-    = Command (Cmd msg)
-    | LoopMsg msg
+    = LoopMsg msg
     | PushUrl String
     | ReplaceUrl String
     | TimeHere (Time.Zone -> msg)
@@ -72,9 +71,6 @@ type alias GraphqlRequestEffect operation msg =
 mapCommonEffect : (a -> b) -> CommonEffect a -> CommonEffect b
 mapCommonEffect fn effect =
     case effect of
-        Command command ->
-            Command <| Cmd.map fn command
-
         LoopMsg msg ->
             LoopMsg <| fn msg
 
@@ -125,11 +121,6 @@ mapCommonEffect fn effect =
                 , toMsgFn = data.toMsgFn >> fn
                 , selection = data.selection
                 }
-
-
-cmd : Cmd msg -> CommonEffect msg
-cmd =
-    Command
 
 
 pushUrl : String -> CommonEffect msg
