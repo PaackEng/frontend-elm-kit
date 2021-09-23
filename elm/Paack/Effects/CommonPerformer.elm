@@ -14,11 +14,6 @@ import UUID exposing (Seeds, UUID)
 effectPerform : Nav.Key -> Seeds -> CommonEffect msg -> ( Seeds, Cmd msg )
 effectPerform key seeds effect =
     case effect of
-        Command command ->
-            ( seeds
-            , command
-            )
-
         LoopMsg msg ->
             ( seeds
             , Task.perform identity <| Task.succeed msg
