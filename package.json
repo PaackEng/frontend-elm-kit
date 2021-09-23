@@ -1,6 +1,6 @@
 {
   "name": "@PaackEng/frontend-elm-kit",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "",
   "private": false,
   "files": [
@@ -43,7 +43,7 @@
     "elm": "^0.19.1-5",
     "elm-review": "^2.5.5",
     "elm-test": "^0.19.1-revision7",
-    "firebase": "^8.6.3"
+    "firebase": "^9.0.0"
   },
   "devDependencies": {
     "@auth0/auth0-spa-js": "^1.17.0",
