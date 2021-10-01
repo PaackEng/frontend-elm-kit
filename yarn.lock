@@ -408,10 +408,10 @@ es-cookie@^1.3.2:
   resolved "https://registry.yarnpkg.com/es-cookie/-/es-cookie-1.3.2.tgz#80e831597f72a25721701bdcb21d990319acd831"
   integrity sha512-UTlYYhXGLOy05P/vKVT2Ui7WtC7NiRzGtJyAKKn32g5Gvcjn7KAClLPWlipCtxIus934dFg9o9jXiBL0nP+t9Q==
 
-esbuild-plugin-elm@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/esbuild-plugin-elm/-/esbuild-plugin-elm-0.0.4.tgz#456589cac47cfa52d0cbfc5a351688772e2d1abf"
-  integrity sha512-LjK59PjKYlYKdqKHS1oiRINbMvj2ga2N3CPr7nfPddw9M9vY+8uvKaZLCauckJ6cozeYMG8g0wGcdoQrtTzhEg==
+esbuild-plugin-elm@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/esbuild-plugin-elm/-/esbuild-plugin-elm-0.0.5.tgz#c8bf835e2c844ce5287b64d2f5fb8d600c90a169"
+  integrity sha512-Xj4DFBKwVHRjtRkRGCC8D2aAGq5gfzYGEvJrizpjrWYFh2OqSkUsPqbqKjcZXp6d0I8uE+Y84+u8jpM6v5scWw==
   dependencies:
     command-exists "^1.2.9"
     node-elm-compiler "^5.0.6"

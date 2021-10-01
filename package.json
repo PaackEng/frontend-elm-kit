@@ -35,7 +35,7 @@
   "dependencies": {
     "elm-optimize-level-2": "^0.1.5",
     "esbuild": "^0.12.24",
-    "esbuild-plugin-elm": "^0.0.4"
+    "esbuild-plugin-elm": "^0.0.5"
   },
   "peerDependencies": {
     "@auth0/auth0-spa-js": "^1.17.0",
