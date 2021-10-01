@@ -380,10 +380,10 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-elm-optimize-level-2@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/elm-optimize-level-2/-/elm-optimize-level-2-0.1.5.tgz#64006eaeff5f8a38829d5526248c914010b138f8"
-  integrity sha512-9vaPjQEjdxzUXewbCJn1X3oIwUgdBssgy+uQvsqyDSpyEwYWxQCgX4qX3NtqKNgsHEZ+TYFzKlzdKvcRKbjOUg==
+elm-optimize-level-2@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/elm-optimize-level-2/-/elm-optimize-level-2-0.2.3.tgz#76ed397e2d52d5cf53e71622cf59dacef0d7967a"
+  integrity sha512-IX/tbLx+8ZHZWSRQLN7nZoEcfkA3OR/ta8tnQgAE+tbX3yadR3zGQZeU3MsvSe42x/uCtiwruZWsT7qi/VMAYw==
   dependencies:
     chalk "^4.1.0"
     commander "^6.0.0"
