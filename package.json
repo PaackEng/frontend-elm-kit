@@ -34,7 +34,7 @@
   "homepage": "https://github.com/PaackEng/frontend-elm-kit#readme",
   "dependencies": {
     "elm-optimize-level-2": "^0.1.5",
-    "esbuild": "^0.12.24",
+    "esbuild": "^0.13.12",
     "esbuild-plugin-elm": "^0.0.4"
   },
   "peerDependencies": {
