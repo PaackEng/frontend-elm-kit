@@ -1,6 +1,6 @@
 {
   "name": "@PaackEng/frontend-elm-kit",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "",
   "private": false,
   "files": [
@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/PaackEng/frontend-elm-kit#readme",
   "dependencies": {
-    "elm-optimize-level-2": "^0.2.3",
+    "elm-optimize-level-2": "^0.1.5",
     "esbuild": "^0.13.12",
     "esbuild-plugin-elm": "^0.0.5"
   },
