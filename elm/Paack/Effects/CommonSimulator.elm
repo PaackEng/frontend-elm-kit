@@ -74,7 +74,7 @@ httpRequest index data =
 graphqlHttpQuery : Int -> GraphqlRequestEffect RootQuery msg -> SimulatedEffect msg
 graphqlHttpQuery index data =
     ElmHttp.post
-        { url = data.url ++ "#i" ++ String.fromInt index
+        { url = data.url ++ "#q" ++ String.fromInt index
         , body = ElmHttp.emptyBody
         , expect = graphqlExpect data
         }
@@ -83,7 +83,7 @@ graphqlHttpQuery index data =
 graphqlHttpMutation : Int -> GraphqlRequestEffect RootMutation msg -> SimulatedEffect msg
 graphqlHttpMutation index data =
     ElmHttp.post
-        { url = data.url ++ "#i" ++ String.fromInt index
+        { url = data.url ++ "#m" ++ String.fromInt index
         , body = ElmHttp.emptyBody
         , expect = graphqlExpect data
         }
