@@ -1,6 +1,4 @@
-module Paack.Basics.Extra exposing (flip, maybePrepend)
-
-import Set
+module Paack.Basics.Extra exposing (flip, ifThenElse, maybePrepend)
 
 
 flip : (a -> b -> c) -> b -> a -> c

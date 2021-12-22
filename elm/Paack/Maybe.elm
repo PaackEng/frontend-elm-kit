@@ -1,4 +1,4 @@
-module Paack.Maybe exposing (flip, maybePrepend)
+module Paack.Maybe exposing (fallback)
 
 
 fallback : Maybe a -> Maybe a -> Maybe a
