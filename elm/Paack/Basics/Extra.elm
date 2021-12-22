@@ -1,16 +1,7 @@
-module Paack.Basics.Extra exposing (flip, maybePrepend)
+module Paack.Basics.Extra exposing (flip)
 
+import Paack.Basics
 
 flip : (a -> b -> c) -> b -> a -> c
-flip applier b a =
-    applier a b
-
-
-maybePrepend : Maybe a -> List a -> List a
-maybePrepend maybeSomething items =
-    case maybeSomething of
-        Just something ->
-            something :: items
-
-        Nothing ->
-            items
+flip =
+    Paack.Basics.flip
