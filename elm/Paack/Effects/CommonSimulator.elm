@@ -20,7 +20,8 @@ effectPerform index effect =
             loop msg
 
         LoadUrl url ->
-            SimulatedNav.load url
+            Nav.load url
+
         PushUrl url ->
             Nav.pushUrl url
 

@@ -101,9 +101,11 @@ mapEffects applier sideEffects =
 
 -- Common side effects
 
+
 loadUrl : String -> Effects msg
 loadUrl =
     Common.loadUrl >> fromCommon
+
 
 pushUrl : String -> Effects msg
 pushUrl =

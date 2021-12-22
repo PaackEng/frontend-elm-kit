@@ -9,6 +9,3 @@ fallback replacement primary =
 
         Nothing ->
             replacement
-
-
-

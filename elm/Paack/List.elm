@@ -1,12 +1,12 @@
-module Paack.List exposing (flip, maybePrepend, findById, insert, updateById)
+module Paack.List exposing (findById, flip, insert, maybePrepend, updateById)
 
 import UUID exposing (UUID)
-
 
 
 unique : List comparable -> List comparable
 unique =
     Set.fromList >> Set.toList
+
 
 findById : UUID -> List { a | id : UUID } -> Maybe { a | id : UUID }
 findById uuid list =
@@ -33,6 +33,7 @@ updateById uuid applier list =
                 item
         )
         list
+
 
 prependMaybe : Maybe a -> List a -> List a
 prependMaybe maybeSomething items =

@@ -126,10 +126,10 @@ mapCommonEffect fn effect =
                 , selection = data.selection
                 }
 
+
 loadUrl : String -> CommonEffect msg
 loadUrl =
     LoadUrl
-
 
 
 pushUrl : String -> CommonEffect msg
