@@ -19,6 +19,9 @@ effectPerform key seeds effect =
             , Task.perform identity <| Task.succeed msg
             )
 
+        LoadUrl url ->
+            ( seeds, Nav.load url )
+
         PushUrl url ->
             ( seeds
             , Nav.pushUrl key url

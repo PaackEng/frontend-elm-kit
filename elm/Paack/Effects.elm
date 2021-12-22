@@ -2,7 +2,7 @@ module Paack.Effects exposing
     ( Effects, fromLocal
     , none, batch, map
     , loopMsg
-    , pushUrl, replaceUrl, timeHere, domFocus, domGetElement, domSetViewportOf
+    , loadUrl, pushUrl, replaceUrl, timeHere, domFocus, domGetElement, domSetViewportOf
     , uuidGenerator, httpRequest, paackUI
     , graphqlQuery, graphqlMutation
     , Effect(..), apply
@@ -24,7 +24,7 @@ module Paack.Effects exposing
 # Common Effects
 
 @docs loopMsg
-@docs pushUrl, replaceUrl, timeHere, domFocus, domGetElement, domSetViewportOf
+@docs loadUrl, pushUrl, replaceUrl, timeHere, domFocus, domGetElement, domSetViewportOf
 @docs uuidGenerator, httpRequest, paackUI
 @docs graphqlQuery, graphqlMutation
 
@@ -100,6 +100,11 @@ mapEffects applier sideEffects =
 
 
 -- Common side effects
+
+
+loadUrl : String -> Effects msg
+loadUrl =
+    Common.loadUrl >> fromCommon
 
 
 pushUrl : String -> Effects msg

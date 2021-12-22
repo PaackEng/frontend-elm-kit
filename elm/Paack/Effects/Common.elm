@@ -1,7 +1,7 @@
 module Paack.Effects.Common exposing
     ( CommonEffect(..), mapCommonEffect
     , loopMsg
-    , pushUrl, replaceUrl, timeHere, domGetElement, domSetViewportOf, domFocus
+    , loadUrl, pushUrl, replaceUrl, timeHere, domGetElement, domSetViewportOf, domFocus
     , uuidGenerator, httpRequest
     , GraphqlRequestEffect, HttpRequestEffect, graphqlQuery, graphqlMutation
     )
@@ -17,7 +17,7 @@ module Paack.Effects.Common exposing
 # Common Effectss
 
 @docs loopMsg
-@docs pushUrl, replaceUrl, timeHere, domGetElement, domSetViewportOf, domFocus
+@docs loadUrl, pushUrl, replaceUrl, timeHere, domGetElement, domSetViewportOf, domFocus
 @docs uuidGenerator, httpRequest
 @docs GraphqlRequestEffect, HttpRequestEffect, graphqlQuery, graphqlMutation
 
@@ -37,6 +37,7 @@ import UUID exposing (UUID, decoder)
 
 type CommonEffect msg
     = LoopMsg msg
+    | LoadUrl String
     | PushUrl String
     | ReplaceUrl String
     | TimeHere (Time.Zone -> msg)
@@ -73,6 +74,9 @@ mapCommonEffect fn effect =
     case effect of
         LoopMsg msg ->
             LoopMsg <| fn msg
+
+        LoadUrl url ->
+            LoadUrl url
 
         PushUrl url ->
             PushUrl url
@@ -121,6 +125,11 @@ mapCommonEffect fn effect =
                 , toMsgFn = data.toMsgFn >> fn
                 , selection = data.selection
                 }
+
+
+loadUrl : String -> CommonEffect msg
+loadUrl =
+    LoadUrl
 
 
 pushUrl : String -> CommonEffect msg
