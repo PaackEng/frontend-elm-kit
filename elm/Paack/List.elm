@@ -1,4 +1,4 @@
-module Paack.List exposing (findById, flip, insert, maybePrepend, updateById)
+module Paack.List exposing (..)
 
 import UUID exposing (UUID)
 
@@ -8,11 +8,23 @@ unique =
     Set.fromList >> Set.toList
 
 
+find : (a -> Bool) -> List a -> Maybe a
+find predicate list =
+    case list of
+        [] ->
+            Nothing
+
+        head :: tail ->
+            if predicate head then
+                Just head
+
+            else
+                find predicate tail
+
+
 findById : UUID -> List { a | id : UUID } -> Maybe { a | id : UUID }
-findById uuid list =
-    list
-        |> List.filter (.id >> (==) uuid)
-        |> List.head
+findById uuid =
+    find (.id >> (==) uuid)
 
 
 insert : { a | id : UUID } -> List { a | id : UUID } -> List { a | id : UUID }
@@ -43,3 +55,18 @@ prependMaybe maybeSomething items =
 
         Nothing ->
             items
+
+
+mapHead : (a -> Maybe b) -> List a -> Maybe b
+mapHead filterMap list =
+    case list of
+        [] ->
+            Nothing
+
+        head :: tail ->
+            case filterMap head of
+                Just match ->
+                    Just match
+
+                Nothing ->
+                    mapHead filterMap tail
