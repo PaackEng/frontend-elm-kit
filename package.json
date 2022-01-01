@@ -38,7 +38,7 @@
     "esbuild-plugin-elm": "^0.0.7"
   },
   "peerDependencies": {
-    "@auth0/auth0-spa-js": "^1.19.2",
+    "@auth0/auth0-spa-js": "^1.19.3",
     "@types/elm": "^0.19.1",
     "elm": "^0.19.1-5",
     "elm-review": "^2.6.1",
@@ -46,7 +46,7 @@
     "firebase": "^9.5.0"
   },
   "devDependencies": {
-    "@auth0/auth0-spa-js": "^1.19.2",
+    "@auth0/auth0-spa-js": "^1.19.3",
     "@types/elm": "^0.19.1",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
