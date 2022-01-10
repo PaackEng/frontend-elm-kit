@@ -1,7 +1,7 @@
 module Paack.List exposing (..)
 
-import UUID exposing (UUID)
 import Set
+import UUID exposing (UUID)
 
 
 unique : List comparable -> List comparable
