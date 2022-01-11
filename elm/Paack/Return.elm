@@ -66,8 +66,8 @@ mapEffect applier ( model, effect ) =
 
 
 withEffect : Effects msg -> Return msg a -> Return msg a
-withEffect effect =
-    mapEffect (always effect)
+withEffect effect_ ( model, effect ) =
+    ( model, Effects.batch [ effect, effect_ ] )
 
 
 withEffects : List (Effects msg) -> Return msg a -> Return msg a
