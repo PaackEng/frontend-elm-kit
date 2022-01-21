@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/PaackEng/frontend-elm-kit#readme",
   "dependencies": {
-    "elm-optimize-level-2": "^0.1.5",
+    "elm-optimize-level-2": "https://github.com/PedroHLC/elm-gobrrrrr.git#staging",
     "esbuild": "^0.14.1",
     "esbuild-plugin-elm": "^0.0.7"
   },
