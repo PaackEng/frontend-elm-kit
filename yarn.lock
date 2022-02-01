@@ -2,17 +2,17 @@
 # yarn lockfile v1
 
 
-"@auth0/auth0-spa-js@^1.19.2":
-  version "1.19.2"
-  resolved "https://registry.yarnpkg.com/@auth0/auth0-spa-js/-/auth0-spa-js-1.19.2.tgz#e8719927d975c932e01631eb24f5a8176a8e009d"
-  integrity sha512-K/9p9VzG4YGFeVUbjLm7PFC4FF3FLI29pzv1SVmJAt9CsfnQQU11IiGV4Af1VjEgue09UfIO8knp6lKKAJDCnw==
+"@auth0/auth0-spa-js@^1.19.4":
+  version "1.19.4"
+  resolved "https://registry.yarnpkg.com/@auth0/auth0-spa-js/-/auth0-spa-js-1.19.4.tgz#74352c9528bff35e8b4e098170bff3f7350f67eb"
+  integrity sha512-2kcTo9DYwt79wpuZ1IkRofnTr/xAe7AvERZZ2p2hN0EpQkIEG2mMJ4tD2NfmZTZHdQOJFy2yvd+ZPkfvsXefow==
   dependencies:
     abortcontroller-polyfill "^1.7.3"
     browser-tabs-lock "^1.2.15"
-    core-js "^3.18.2"
+    core-js "^3.20.0"
     es-cookie "^1.3.2"
     fast-text-encoding "^1.0.3"
-    promise-polyfill "^8.2.0"
+    promise-polyfill "^8.2.1"
     unfetch "^4.2.0"
 
 "@eslint/eslintrc@^1.0.4":
@@ -264,10 +264,10 @@ concat-map@0.0.1:
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   integrity sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=
 
-core-js@^3.18.2:
-  version "3.19.2"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.19.2.tgz#ae216d7f4f7e924d9a2e3ff1e4b1940220f9157b"
-  integrity sha512-ciYCResnLIATSsXuXnIOH4CbdfgV+H1Ltg16hJFN7/v6OxqnFr/IFGeLacaZ+fHLAm0TBbXwNK9/DNBzBUrO/g==
+core-js@^3.20.0:
+  version "3.20.3"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.20.3.tgz#c710d0a676e684522f3db4ee84e5e18a9d11d69a"
+  integrity sha512-vVl8j8ph6tRS3B8qir40H7yw7voy17xL0piAjlbBUsH7WIfzoedL/ZOr1OV9FyZQLWXsayOJyV4tnRyXR85/ag==
 
 cross-spawn@6.0.5:
   version "6.0.5"
@@ -936,7 +936,7 @@ progress@^2.0.0:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-promise-polyfill@^8.2.0:
+promise-polyfill@^8.2.1:
   version "8.2.1"
   resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-8.2.1.tgz#1fa955b325bee4f6b8a4311e18148d4e5b46d254"
   integrity sha512-3p9zj0cEHbp7NVUxEYUWjQlffXqnXaZIMPkAO7HhFh8u5636xLRDHOUo2vpWSK0T2mqm6fKLXYn1KP6PAZ2gKg==
