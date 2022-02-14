@@ -430,13 +430,12 @@ esbuild-openbsd-64@0.14.21:
   resolved "https://registry.yarnpkg.com/esbuild-openbsd-64/-/esbuild-openbsd-64-0.14.21.tgz#f886b93feefddbe573528fa4b421c9c6e2bc969b"
   integrity sha512-h9zLMyVD0T73MDTVYIb/qUTokwI6EJH9O6wESuTNq6+XpMSr6C5aYZ4fvFKdNELW+Xsod+yDS2hV2JTUAbFrLA==
 
-esbuild-plugin-elm@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/esbuild-plugin-elm/-/esbuild-plugin-elm-0.0.7.tgz#83e64eac03cfd53b4f8132bbe043d31e5cb7e1eb"
-  integrity sha512-L5gN3IhNjHQ6rjh35yvFVVHdpVknZrGwLd/oYeree5SP5nK/o3hBtDCZ6cWOerz4TcEzh1iz/s4WXrOkyNa7OA==
+esbuild-plugin-elm@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/esbuild-plugin-elm/-/esbuild-plugin-elm-0.0.8.tgz#2aeb0515a042ea0166d9af96080c2baa77f710e1"
+  integrity sha512-2SntVweWbWV6zZqcU0f9o3f0VuXAnkYX4eWeFw/ENveUnDWGZ1pSlCprOdvjhHFzaEAZPLQ86HPbBrNPnXceUA==
   dependencies:
     command-exists "^1.2.9"
-    find-elm-dependencies "^2.0.4"
     node-elm-compiler "^5.0.6"
 
 esbuild-sunos-64@0.14.21:
