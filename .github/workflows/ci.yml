@@ -35,8 +35,8 @@ jobs:
       - name: Type-check TS
         run: yarn run tsc
 
-      - name: Install example dependencies
-        run: yarn install --frozen-lockfile
+      - name: Install example dependencies (No lockfile)
+        run: yarn install
         working-directory: ${{env.example-dir}}
 
       - name: Review Elm code
@@ -62,8 +62,8 @@ jobs:
           node-version: 'lts/*'
           cache: 'yarn'
 
-      - name: Install/Update dependencies
-        run: yarn install --frozen-lockfile
+      - name: Install/Update dependencies (No lockfile)
+        run: yarn install
         working-directory: ${{env.example-dir}}
 
       - name: Run tests
