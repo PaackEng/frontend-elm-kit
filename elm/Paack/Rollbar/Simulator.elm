@@ -1,6 +1,6 @@
 module Paack.Rollbar.Simulator exposing (simulator)
 
-import Paack.Rollbar.Effect exposing (Effect(..), RollbarResult)
+import Paack.Rollbar.Effect exposing (Effect, RollbarResult)
 import ProgramTest exposing (SimulatedEffect)
 import SimulatedEffect.Task as SimulatedTask
 
