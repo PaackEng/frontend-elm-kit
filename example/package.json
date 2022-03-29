@@ -13,9 +13,9 @@
   "dependencies": {},
   "devDependencies": {
     "@PaackEng/frontend-elm-kit": "file:..",
-    "@auth0/auth0-spa-js": "^1.19.2",
+    "@auth0/auth0-spa-js": "^1.20.1",
     "elm": "^0.19.1-5",
-    "elm-review": "^2.6.1",
+    "elm-review": "^2.7.1",
     "elm-test": "^0.19.1-revision7"
   },
   "prettier": {
