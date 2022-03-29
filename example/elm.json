@@ -10,7 +10,7 @@
             "NoRedInk/elm-json-decode-pipeline": "1.0.1",
             "NoRedInk/elm-rollbar": "2.0.1",
             "PaackEng/paack-remotedata": "1.1.0",
-            "PaackEng/paack-ui": "7.15.0",
+            "PaackEng/paack-ui": "7.19.3",
             "TSFoster/elm-uuid": "4.1.0",
             "avh4/elm-fifo": "1.0.4",
             "dillonkearns/elm-graphql": "5.0.9",
@@ -48,10 +48,11 @@
     },
     "test-dependencies": {
         "direct": {
-            "avh4/elm-program-test": "3.6.1",
+            "avh4/elm-program-test": "3.6.2",
             "elm-explorations/test": "1.2.2"
         },
         "indirect": {
+            "hecrj/html-parser": "2.4.0",
             "mgold/elm-nonempty-list": "4.2.0"
         }
     }
