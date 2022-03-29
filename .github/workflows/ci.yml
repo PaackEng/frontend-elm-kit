@@ -16,23 +16,15 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-        working-directory: ${{env.example-dir}}
-
-      - uses: actions/cache@v2
-        id: yarn-cache
+      - uses: actions/setup-node@v3
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          node-version: 'lts/*'
+          cache: 'yarn'
 
       - name: Install root dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
       - name: Lint TS code
         run: yarn run eslint
@@ -43,7 +35,7 @@ jobs:
       - name: Type-check TS
         run: yarn run tsc
 
-      - name: Install example dependencies
+      - name: Install example dependencies (No lockfile)
         run: yarn install
         working-directory: ${{env.example-dir}}
 
@@ -63,22 +55,14 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-        working-directory: ${{env.example-dir}}
-
-      - uses: actions/cache@v2
-        id: yarn-cache
+      - uses: actions/setup-node@v3
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          node-version: 'lts/*'
+          cache: 'yarn'
 
-      - name: Install/Update dependencies
+      - name: Install/Update dependencies (No lockfile)
         run: yarn install
         working-directory: ${{env.example-dir}}
 

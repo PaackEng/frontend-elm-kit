@@ -198,4 +198,4 @@ paackUI applier =
                 UI.Analytics analytics ->
                     applier analytics
     in
-    List.map handler >> List.concat
+    List.concatMap handler

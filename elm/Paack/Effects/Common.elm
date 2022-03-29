@@ -32,7 +32,7 @@ import Http as ElmHttp
 import Json.Decode as Decode exposing (Decoder, Value)
 import Remote.Response as Response exposing (GraphqlHttpResponse)
 import Time
-import UUID exposing (UUID, decoder)
+import UUID exposing (UUID)
 
 
 type CommonEffect msg

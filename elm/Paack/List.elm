@@ -71,3 +71,8 @@ mapHead filterMap list =
 
                 Nothing ->
                     mapHead filterMap tail
+
+
+concatr : List (List a) -> List a
+concatr lists =
+    List.foldl List.append [] lists
