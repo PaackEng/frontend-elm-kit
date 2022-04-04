@@ -1,4 +1,11 @@
-import { Chart } from 'chart.js';
+import {
+  Chart,
+  ScatterController,
+  LinearScale,
+  PointElement,
+  LineElement,
+} from 'chart.js';
+Chart.register(ScatterController, LinearScale, PointElement, LineElement);
 
 type Benchmark = { topic: string; index: number; duration: number };
 type Benchmarks = Benchmark[];
