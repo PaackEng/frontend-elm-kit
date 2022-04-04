@@ -9,6 +9,8 @@ const app = Elm.Main.init({
   node: document.getElementById('main'),
   flags: {
     gitDescribe,
+    innerWidth: window.innerWidth,
+    innerHeight: window.innerHeight,
     randomSeed1: seeds[0],
     randomSeed2: seeds[1],
     randomSeed3: seeds[2],
