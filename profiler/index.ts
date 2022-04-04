@@ -4,8 +4,15 @@ import {
   LinearScale,
   PointElement,
   LineElement,
+  Legend,
 } from 'chart.js';
-Chart.register(ScatterController, LinearScale, PointElement, LineElement);
+Chart.register(
+  ScatterController,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Legend,
+);
 
 type Benchmark = { topic: string; index: number; duration: number };
 type Benchmarks = Benchmark[];
