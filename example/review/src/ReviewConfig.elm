@@ -23,7 +23,7 @@ import NoUnused.Dependencies
 import NoUnused.Parameters
 import NoUnused.Patterns
 import NoUnused.Variables
-import Review.Rule exposing (Rule, ignoreErrorsForDirectories)
+import Review.Rule as Rule exposing (Rule)
 import Simplify
 
 
@@ -32,7 +32,9 @@ import Simplify
 config : List Rule
 config =
     [ NoBooleanCase.rule
-    , NoDebug.Log.rule
+    , Rule.ignoreErrorsForFiles
+        [ "../elm/Paack/Profiler.elm" ]
+        NoDebug.Log.rule
     , NoDebug.TodoOrToString.rule
     , NoDeprecated.rule NoDeprecated.defaults
     , NoInvalidRGBValues.rule
