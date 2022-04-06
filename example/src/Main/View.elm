@@ -1,6 +1,5 @@
 module Main.View exposing (view)
 
-import Browser
 import Element exposing (text)
 import Main.Model exposing (Model)
 import Main.Msg as Msg exposing (Msg)
