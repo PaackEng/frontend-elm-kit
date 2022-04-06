@@ -1,11 +1,6 @@
 module Paack.Basics exposing (..)
 
 
-type Either a b
-    = Left a
-    | Right b
-
-
 range : (Int -> a) -> Int -> Int -> Int -> List ( a, a )
 range mapper interval start end =
     if interval <= 0 then
