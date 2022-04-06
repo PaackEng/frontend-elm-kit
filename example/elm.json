@@ -10,7 +10,7 @@
             "NoRedInk/elm-json-decode-pipeline": "1.0.1",
             "NoRedInk/elm-rollbar": "2.0.1",
             "PaackEng/paack-remotedata": "1.1.0",
-            "PaackEng/paack-ui": "7.19.3",
+            "PaackEng/paack-ui": "7.21.0",
             "TSFoster/elm-uuid": "4.1.0",
             "avh4/elm-fifo": "1.0.4",
             "dillonkearns/elm-graphql": "5.0.9",
@@ -22,6 +22,7 @@
             "elm/random": "1.0.0",
             "elm/time": "1.0.0",
             "elm/url": "1.0.0",
+            "mdgriffith/elm-ui": "1.1.8",
             "rtfeldman/elm-iso8601-date-strings": "1.1.4"
         },
         "indirect": {
@@ -41,7 +42,6 @@
             "elm-community/list-extra": "8.5.2",
             "j-maas/elm-ordered-containers": "1.0.0",
             "lukewestby/elm-string-interpolate": "1.0.4",
-            "mdgriffith/elm-ui": "1.1.8",
             "rtfeldman/elm-hex": "1.0.0",
             "zwilias/elm-utf-tools": "2.0.1"
         }

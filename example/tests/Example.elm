@@ -2,15 +2,14 @@ module Example exposing (authFlow)
 
 import Iso8601
 import Json.Encode as Encode
-import Main.Model as Model exposing (Flags, Model, authConfig)
+import Main.Model exposing (Flags, Model, authConfig)
 import Main.Msg as Msg exposing (Msg)
-import Main.Update exposing (update)
-import Main.View exposing (view)
 import Paack.Auth.Main as Auth
 import Paack.Auth.User as User
 import Paack.Effects exposing (Effects)
 import Paack.Effects.Simulator exposing (simulator)
-import ProgramTest exposing (ProgramDefinition, ProgramTest, expectViewHas)
+import Paack.ProgramTest as Paack exposing (ProgramDefinition)
+import ProgramTest exposing (ProgramTest, expectViewHas)
 import SimulatedEffect.Ports
 import Test exposing (..)
 import Test.Html.Selector exposing (text)
@@ -28,7 +27,9 @@ start =
 
 mockFlags : Flags
 mockFlags =
-    { randomSeed1 = -1
+    { innerWidth = 1920
+    , innerHeight = 1080
+    , randomSeed1 = -1
     , randomSeed2 = -1
     , randomSeed3 = -1
     , randomSeed4 = -1
@@ -38,14 +39,13 @@ mockFlags =
     }
 
 
-programDefinition : ProgramDefinition Flags Model Msg (Effects Msg)
+programDefinition : ProgramDefinition
 programDefinition =
-    ProgramTest.createApplication
-        { init = Model.init
-        , view = view
-        , update = update
-        , onUrlRequest = Msg.LinkClicked
+    Paack.createApplication
+        { onUrlRequest = Msg.LinkClicked
         , onUrlChange = Msg.UrlChanged
+        , getRenderConfig = .appConfig >> .renderConfig
+        , getPage = .page
         }
 
 
