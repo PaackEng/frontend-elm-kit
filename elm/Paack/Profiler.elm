@@ -7,8 +7,10 @@ import Html.Lazy exposing (lazy)
 import Main.Model exposing (Flags, Model)
 import Main.Msg exposing (Msg)
 import Main.Pages exposing (PageModel)
+import Main.Subscriptions exposing (subscriptions)
+import Main.View exposing (view)
 import Paack.Effects.MainHelper exposing (PerformerModel, performedInit, performedUpdate)
-import UI.Document as UI exposing (Document)
+import UI.Document as UI
 import UI.RenderConfig exposing (RenderConfig)
 import Url exposing (Url)
 
@@ -18,9 +20,7 @@ type alias Program =
 
 
 type alias ProgramData =
-    { view : Model -> Document PageModel Msg
-    , subscriptions : Model -> Sub Msg
-    , onUrlRequest : UrlRequest -> Msg
+    { onUrlRequest : UrlRequest -> Msg
     , onUrlChange : Url -> Msg
     , getRenderConfig : Model -> RenderConfig
     , getPage : Model -> PageModel
@@ -68,7 +68,7 @@ browserApplication data =
                 in
                 appModel
                     |> escape startTag ()
-                    |> data.view
+                    |> view
                     |> UI.withExtraHtml charts
                     |> UI.toBrowserDocument
                         (data.getRenderConfig appModel)
@@ -96,7 +96,7 @@ browserApplication data =
                     |> Tuple.mapFirst (Tuple.pair nextCounter)
         , onUrlRequest = data.onUrlRequest
         , onUrlChange = data.onUrlChange
-        , subscriptions = Tuple.second >> .appModel >> data.subscriptions
+        , subscriptions = Tuple.second >> .appModel >> subscriptions
         }
 
 
