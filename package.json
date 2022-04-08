@@ -1,16 +1,17 @@
 {
   "name": "@PaackEng/frontend-elm-kit",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "description": "",
   "private": false,
   "files": [
-    "elm",
-    "prettier",
     "auth0",
+    "bin",
+    "elm",
     "firebase",
+    "prettier",
+    "profiler",
     "eslintconfig.json",
-    "tsconfig.json",
-    "bin/**"
+    "tsconfig.json"
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
