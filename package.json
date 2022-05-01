@@ -40,7 +40,7 @@
   },
   "peerDependencies": {
     "@auth0/auth0-spa-js": "^1.20.1",
-    "@types/chart.js": "^2.9.36",
+    "@types/chart.js": "^2.9.37",
     "@types/elm": "^0.19.1",
     "chart.js": "^3.7.1",
     "elm": "^0.19.1-5",
@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@auth0/auth0-spa-js": "^1.20.1",
-    "@types/chart.js": "^2.9.36",
+    "@types/chart.js": "^2.9.37",
     "@types/elm": "^0.19.1",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
