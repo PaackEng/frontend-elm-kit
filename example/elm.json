@@ -11,7 +11,7 @@
             "NoRedInk/elm-rollbar": "2.0.1",
             "PaackEng/paack-remotedata": "1.1.0",
             "PaackEng/paack-ui": "7.21.0",
-            "TSFoster/elm-uuid": "4.1.0",
+            "TSFoster/elm-uuid": "4.2.0",
             "avh4/elm-fifo": "1.0.4",
             "dillonkearns/elm-graphql": "5.0.9",
             "elm/browser": "1.0.2",
