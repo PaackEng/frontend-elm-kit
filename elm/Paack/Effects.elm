@@ -3,7 +3,7 @@ module Paack.Effects exposing
     , none, batch, map
     , loopMsg
     , loadUrl, pushUrl, replaceUrl, timeHere, domFocus, domGetElement, domSetViewportOf
-    , uuidGenerator, httpRequest, paackUI
+    , uuidGenerator, httpRequest, httpRequestJson, paackUI
     , graphqlQuery, graphqlMutation
     , Effect(..), apply
     )
@@ -25,7 +25,7 @@ module Paack.Effects exposing
 
 @docs loopMsg
 @docs loadUrl, pushUrl, replaceUrl, timeHere, domFocus, domGetElement, domSetViewportOf
-@docs uuidGenerator, httpRequest, paackUI
+@docs uuidGenerator, httpRequest, httpRequestJson, paackUI
 @docs graphqlQuery, graphqlMutation
 
 
@@ -152,13 +152,27 @@ httpRequest :
     , headers : List ElmHttp.Header
     , url : String
     , body : ElmHttp.Body
+    , expect : Result ElmHttp.Error String -> msg
+    , timeout : Maybe Float
+    , tracker : Maybe String
+    }
+    -> Effects msg
+httpRequest =
+    Common.HttpRequest >> fromCommon
+
+
+httpRequestJson :
+    { method : String
+    , headers : List ElmHttp.Header
+    , url : String
+    , body : ElmHttp.Body
     , decoder : Decoder a
     , expect : Result ElmHttp.Error a -> msg
     , timeout : Maybe Float
     , tracker : Maybe String
     }
     -> Effects msg
-httpRequest =
+httpRequestJson =
     Common.httpRequest >> fromCommon
 
 
