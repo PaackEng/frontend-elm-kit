@@ -35,7 +35,7 @@
   "homepage": "https://github.com/PaackEng/frontend-elm-kit#readme",
   "dependencies": {
     "elm-optimize-level-2": "^0.3.4",
-    "esbuild": "^0.14.23",
+    "esbuild": "0.14.23",
     "esbuild-plugin-elm": "^0.0.8"
   },
   "peerDependencies": {
@@ -46,7 +46,7 @@
     "elm": "^0.19.1-5",
     "elm-review": "^2.7.1",
     "elm-test": "^0.19.1-revision7",
-    "firebase": "^9.6.10"
+    "firebase": "^9.8.3"
   },
   "devDependencies": {
     "@auth0/auth0-spa-js": "^1.20.1",
