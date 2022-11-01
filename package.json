@@ -37,7 +37,7 @@
     "elm-optimize-level-2": "^0.3.4",
     "esbuild": "^0.14.47",
     "esbuild-plugin-elm": "^0.0.11",
-    "firebase": "^9.8.3"
+    "firebase": "^9.13.0"
   },
   "peerDependencies": {
     "@auth0/auth0-spa-js": "^1.20.1",
