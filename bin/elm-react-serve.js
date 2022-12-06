@@ -13,7 +13,7 @@ require('esbuild')
       entryPoints: ['web/ts/index.ts', 'web/react/index.tsx'],
       outdir: 'web',
       bundle: true,
-      plugins: [EnvFilePlugin, ElmPlugin({ debug: true })]
+      plugins: [EnvFilePlugin, ElmPlugin({ debug: true })],
     },
   )
   .then((esbuildServer) => {

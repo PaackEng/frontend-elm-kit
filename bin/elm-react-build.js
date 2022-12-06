@@ -25,10 +25,15 @@ require('esbuild')
       if (err) return console.error(err);
 
       const path = Object.keys(result.metafile.outputs)[0].replace('dist/', '');
-      const reactPath = Object.keys(result.metafile.outputs)[1].replace('dist/', '');
+      const reactPath = Object.keys(result.metafile.outputs)[1].replace(
+        'dist/',
+        '',
+      );
       fs.writeFile(
         htmlPath,
-        data.replace('/ts/index.js', path).replace('/react/index.js', reactPath),
+        data
+          .replace('/ts/index.js', path)
+          .replace('/react/index.js', reactPath),
         'utf8',
         console.log,
       );
