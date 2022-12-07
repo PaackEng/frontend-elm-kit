@@ -19,7 +19,7 @@ require('esbuild')
     const { host, port } = esbuildServer;
 
     http
-      .createServer(/.*/,(req, res) => {
+      .createServer((req, res) => {
         const forwardRequest = (path) => {
           const options = {
             hostname: host,
