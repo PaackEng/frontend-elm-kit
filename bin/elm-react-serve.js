@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-const path = require('path');
 const ElmPlugin = require('esbuild-plugin-elm');
 const EnvFilePlugin = require('./lib/env');
 const http = require('http');
@@ -20,7 +19,7 @@ require('esbuild')
     const { host, port } = esbuildServer;
 
     http
-      .createServer((req, res) => {
+      .createServer(/.*/,(req, res) => {
         const forwardRequest = (path) => {
           const options = {
             hostname: host,
