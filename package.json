@@ -1,6 +1,6 @@
 {
   "name": "@PaackEng/frontend-elm-kit",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "",
   "private": false,
   "files": [
@@ -62,7 +62,9 @@
   "bin": {
     "paack-elm-wrapper": "bin/elm-wrapper.sh",
     "paack-elm-build": "bin/build.js",
-    "paack-elm-serve": "bin/serve.js"
+    "paack-elm-serve": "bin/serve.js",
+    "paack-elm-react-build": "bin/elm-react-build.js",
+    "paack-elm-react-serve": "bin/elm-react-serve.js"
   },
   "engines": {
     "node": ">=0.16"
